@@ -12,11 +12,11 @@ async function bootstrap() {
   patchNestJsSwagger();
 
   const config = new DocumentBuilder()
-    .setTitle('Area API')
-    .setDescription('Uma api para uma área de membros')
+    .setTitle('SOSGatinhosDoParque')
+    .setDescription('Uma api para gatinhos do parque')
     .setVersion('1.0')
     .setBasePath('/api')
-    .addTag('MEMBROS')
+    .addTag('GatosDoParque')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);

@@ -5,6 +5,8 @@ import { ConfigModule } from '@nestjs/config';
 import { envSchema } from './env';
 import { APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from 'nestjs-zod';
+import { PrismaModule } from './public/prisma/prisma.module';
+import { UserModule } from './admin/user/user.module';
 
 @Module({
   imports: [
@@ -12,6 +14,8 @@ import { ZodValidationPipe } from 'nestjs-zod';
       validate: (env) => envSchema.parse(env),
       isGlobal: true,
     }),
+    PrismaModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [
