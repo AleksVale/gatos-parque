@@ -17,6 +17,7 @@ export class UserController {
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
+    console.log('testecommit');
     return this.userService.create(createUserDto);
   }
 
