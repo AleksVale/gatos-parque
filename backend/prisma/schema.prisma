@@ -40,10 +40,115 @@ model User {
   status      UserStatus @default(ACTIVE)
   password    String
   photoKey    String?    @map("photo_key")
+  addressId   String?    @map("address_id")
+  address     Address?   @relation(fields: [addressId], references: [id])
   roleId      String
   role        Role       @relation(fields: [roleId], references: [id])
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
+  Adoption    Adoption[]
+  Feed        Feed[]
 
   @@map("users")
+}
+
+enum CatStatus {
+  ACTIVE
+  ADOPTED
+  DISABLED
+}
+
+model Cat {
+  id          String     @id @default(uuid())
+  name        String
+  age         Int
+  description String
+  status      CatStatus
+  photoKey    String?    @map("photo_key")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  Adoption    Adoption[]
+
+  @@map("cats")
+}
+
+model Address {
+  id               String             @id @default(uuid())
+  street           String
+  number           String
+  complement       String?
+  address          String
+  city             String
+  state            String
+  zipCode          String             @map("zip_code")
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  User             User[]
+  Adoption         Adoption[]
+  VoluntaryRequest VoluntaryRequest[]
+
+  @@map("addresses")
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Adoption {
+  id        String        @id @default(uuid())
+  userId    String        @map("user_id")
+  user      User          @relation(fields: [userId], references: [id])
+  catId     String        @map("cat_id")
+  cat       Cat           @relation(fields: [catId], references: [id])
+  addressId String        @map("address_id")
+  address   Address       @relation(fields: [addressId], references: [id])
+  status    RequestStatus
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@map("adoptions")
+}
+
+model Feed {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  photo_key   String?  @map("photo_key")
+  userId      String   @map("user_id")
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("feeds")
+}
+
+model VoluntaryRequest {
+  id              String            @id @default(uuid())
+  firstName       String            @map("first_name")
+  lastName        String            @map("last_name")
+  dateOfBirth     DateTime          @map("date_of_birth")
+  document        String
+  reason          String
+  photoKey        String?           @map("photo_key")
+  status          RequestStatus
+  addressId       String            @map("address_id")
+  address         Address           @relation(fields: [addressId], references: [id])
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  PhotoKeyAmbient PhotoKeyAmbient[]
+
+  @@map("voluntary_requests")
+}
+
+model PhotoKeyAmbient {
+  id                 String           @id @default(uuid())
+  photoKey           String           @map("photo_key")
+  voluntaryRequestId String           @map("voluntary_request_id")
+  voluntaryRequest   VoluntaryRequest @relation(fields: [voluntaryRequestId], references: [id])
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  @@map("photo_keys_ambient")
 }

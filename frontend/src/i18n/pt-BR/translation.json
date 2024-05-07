@@ -1,0 +1,20 @@
+{
+    "Welcome to React": "Bem-vindo ao React e react-i18next",
+    "Form": {
+        "Name": "Nome",
+        "Email": "E-mail",
+        "Password": "Senha",
+        "Confirm Password": "Confirme a Senha",
+        "Submit": "Enviar",
+        "Reset": "Redefinir",
+        "Enter": "Entrar"
+    },
+    "errors": {
+        "required": "{{field}} é obrigatório",
+        "minLength": "{{field}} deve ter pelo menos {{min}} caracteres",
+        "email": "Por favor, insira um e-mail válido",
+        "password": "A senha deve ter pelo menos 8 caracteres",
+        "confirmPassword": "As senhas não coincidem",
+        "internalError": "Erro inesperado, tente novamente em breve"
+    }
+}

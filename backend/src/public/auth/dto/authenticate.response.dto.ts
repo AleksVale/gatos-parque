@@ -5,17 +5,11 @@ export class AuthenticateResponseDTO {
   token!: string;
 
   @ApiProperty()
-  id!: string;
+  role!: string;
 
   @ApiProperty()
-  profile!: string;
+  firstName!: string;
 
   @ApiProperty()
-  name!: string;
-
-  @ApiProperty()
-  email!: string;
-
-  @ApiProperty()
-  photo!: string | null;
+  lastName!: string;
 }

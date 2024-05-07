@@ -13,9 +13,10 @@ export class BaseRepository<T> {
     return await this.prisma[this.database].create({ data });
   }
 
-  async find<U>(condition: U) {
+  async find<U, V>(condition: U, include?: V): Promise<T | null> {
     return await this.prisma[this.database].findFirst({
       where: condition,
+      include,
     });
   }
 

@@ -3,41 +3,70 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
+  UseGuards,
+  Patch,
+  Query,
+  DefaultValuePipe,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserAdminDTO } from './dto/create-user.dto';
+import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { SuccessResponseDTO } from 'src/utils/dto/success-response.dto';
+import { RoleGuard } from 'src/public/role/role.guard';
+import { JwtAuthGuard } from 'src/public/auth/jwt-auth.guard';
+import { Roles } from 'src/public/decorators/roles/roles.decorator';
+import { UserResponseDto } from './dto/user-response.dto';
+import { UpdateUserAdminDTO } from './dto/update-user.dto';
+import { ApiOkResponsePaginated } from 'src/public/decorators/paginatedResponse';
+import { Role } from 'src/public/role.enum';
 
+@ApiTags('Admin/User')
+@UseGuards(JwtAuthGuard, RoleGuard)
+@Roles([Role.ADMIN])
 @Controller('admin/user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @ApiCreatedResponse({ type: SuccessResponseDTO })
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    console.log('testecommit');
+  create(
+    @Body() createUserDto: CreateUserAdminDTO,
+  ): Promise<SuccessResponseDTO> {
     return this.userService.create(createUserDto);
   }
 
-  @Get()
-  async findAll() {
-    return this.userService.findAll();
+  @ApiOkResponse({ type: SuccessResponseDTO })
+  @Patch(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateUserDto: UpdateUserAdminDTO,
+  ): Promise<SuccessResponseDTO> {
+    await this.userService.update(id, updateUserDto);
+    return { success: true };
   }
 
+  @ApiOkResponsePaginated(UserResponseDto)
+  @Get()
+  async findAll(
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query('per_page', new DefaultValuePipe(10), ParseIntPipe) perPage: number,
+  ) {
+    return this.userService.findAll({ page, perPage });
+  }
+
+  @ApiOkResponse({ type: UserResponseDto })
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+    return this.userService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
-  }
-
+  @ApiOkResponse({ type: SuccessResponseDTO })
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+  async remove(@Param('id') id: string): Promise<SuccessResponseDTO> {
+    await this.userService.remove(id);
+    return { success: true };
   }
 }

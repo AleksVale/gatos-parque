@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
 import { Env } from 'src/env';
 
 const tokenPayloadSchema = z.object({
-  id: z.number(),
+  id: z.string().uuid(),
   sub: z.object({
     name: z.string(),
     email: z.string(),
