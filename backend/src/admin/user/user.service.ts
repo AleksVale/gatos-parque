@@ -6,11 +6,11 @@ import { Prisma, UserStatus } from '@prisma/client';
 import { Validator } from 'src/utils/validation';
 import { UpdateUserAdminDTO } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
-
 export interface IFilterGetUsers {
   page: number;
   perPage: number;
 }
+
 @Injectable()
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
@@ -38,7 +38,7 @@ export class UserService {
       Prisma.UserWhereUniqueInput
     >(updateUserDto, { id });
   }
-
+  // ai qnd eu salvo tira
   findByEmail(email: string) {
     return this.userRepository.findByEmail(email);
   }

@@ -9,14 +9,18 @@ export function AdminLayout() {
     <div className="h-screen bg-background w-screen flex">
       <nav className="h-screen bg-secondary border-r border-primary w-44 text-center">
         <div className="h-10 border-b border-primary my-6">ADMIN</div>
-        <div className="space-y-2">
+        <div className="space-y-4 mx-2">
           <MenuLink icon={<Home />} label="Home" to={ROUTES.home} />
           <MenuLink icon={<UserCircle />} label="Usuários" to={ROUTES.users} />
         </div>
       </nav>
       <div className="w-full">
-        <Header />
-        <Outlet />
+        <header>
+          <Header />
+        </header>
+        <main className="p-4">
+          <Outlet />
+        </main>
       </div>
     </div>
   )

@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserService } from './user.service';
 
+// teste unitario aq 100% da service de cov
+
 import { UserRepository } from 'src/repositories/user.repository';
 import { PrismaService } from 'src/public/prisma/prisma.service';
 import { User, UserStatus } from '@prisma/client';

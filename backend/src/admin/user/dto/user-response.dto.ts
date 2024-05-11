@@ -26,6 +26,9 @@ export class UserResponseDto implements User {
   @ApiProperty()
   password: string;
 
+  @ApiProperty()
+  phoneNumber: string;
+
   @ApiProperty({ type: String, required: false, nullable: true })
   photoKey: string | null;
 

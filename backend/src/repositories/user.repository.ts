@@ -22,6 +22,7 @@ export class UserRepository extends BaseRepository<User> {
       },
     });
   }
+  // seloco pede ele pra fazer uma em express antes q ai ce pega os conceitos dps passa pro nest
 
   async findAll(options: IFilterGetUsers) {
     const paginate = createPaginator({ perPage: options.perPage });

@@ -9,6 +9,7 @@ export const createUserSchema = z.object({
   firstName: z.string().min(1, { message: zodMessages.required }),
   lastName: z.string().min(1, { message: zodMessages.required }),
   dateOfBirth: z.dateString().format('date'),
+  phoneNumber: z.string().min(10).max(11),
   document: z.string().min(11).max(11).refine(Validator.validateCPF, {
     message: zodMessages.invalidCpf,
   }),

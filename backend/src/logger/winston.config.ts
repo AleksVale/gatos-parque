@@ -1,6 +1,8 @@
 import * as winston from 'winston';
 import 'winston-daily-rotate-file';
 
+// usando o winston e separando por dia
+
 const transports = [
   new winston.transports.Console({
     format: winston.format.combine(
