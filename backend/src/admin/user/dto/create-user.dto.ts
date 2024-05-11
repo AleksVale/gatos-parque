@@ -20,8 +20,8 @@ export const createUserSchema = z.object({
     .atLeastOne('lowercase')
     .atLeastOne('uppercase')
     .min(8),
-  photoKey: z.string().nullable(),
-  addressId: z.string().nullable(),
+  photoKey: z.string().nullable().optional(),
+  addressId: z.string().nullable().optional(),
   roleId: z.string().uuid({ message: zodMessages.required }),
 });
 

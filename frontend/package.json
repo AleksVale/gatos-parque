@@ -27,6 +27,7 @@
     "clsx": "^2.1.1",
     "cpf-cnpj-validator": "^1.0.3",
     "date-fns": "^3.6.0",
+    "dayjs": "^1.11.11",
     "i18next": "^23.11.3",
     "localforage": "^1.10.0",
     "lucide-react": "^0.376.0",

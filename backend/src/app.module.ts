@@ -11,6 +11,7 @@ import { AuthModule } from './public/auth/auth.module';
 import { AwsModule } from './public/aws/aws.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { LoggerModule } from './logger/logger.module';
+import { AutocompleteModule } from './public/autocomplete/autocomplete.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { LoggerModule } from './logger/logger.module';
     AuthModule,
     AwsModule,
     LoggerModule,
+    AutocompleteModule,
   ],
   controllers: [AppController],
   providers: [
