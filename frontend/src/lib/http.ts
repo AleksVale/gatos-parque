@@ -13,10 +13,10 @@ let serverURL
 
 if (process.env.NODE_ENV === 'production') {
   // Use production URL
-  serverURL = '/api/admin'
+  serverURL = '/api'
 } else {
   // Use local development URL
-  serverURL = 'http://localhost:5005/api/admin'
+  serverURL = 'http://localhost:5005/api'
 }
 
 const http: AxiosInstance = axios.create({
