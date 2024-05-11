@@ -15,7 +15,7 @@ export interface IUser {
   email: string
   firstName: string
   lastName: string
-  dateOfBirth: Date
+  dateOfBirth: string
   document: string
   phoneNumber: string
   status: UserStatus

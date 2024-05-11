@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { ROUTES } from '@/constants/routes'
 import { IUser } from '@/interfaces/user'
 import { ColumnDef } from '@tanstack/react-table'
 import { MoreHorizontal, Edit, PhoneCall } from 'lucide-react'
@@ -60,7 +61,7 @@ export function useColumsUser() {
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Ações</DropdownMenuLabel>
                 <DropdownMenuItem
-                  onClick={() => navigate(`admin/user/${user.id}/e`)}
+                  onClick={() => navigate(ROUTES.editUser(user.id))}
                   className="group flex items-center gap-2"
                 >
                   <Edit size={16} className="text-primary" />

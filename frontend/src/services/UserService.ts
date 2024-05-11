@@ -14,4 +14,11 @@ export const UserService = {
   create: async (data: TCreateUserSchema) => {
     return http.post<SuccessResponse>('admin/users', data)
   },
+
+  update: async (data: TCreateUserSchema, id?: string) => {
+    return http.patch<SuccessResponse>(`admin/users/${id}`, data)
+  },
+  get: async (id?: string) => {
+    return http.get<IUser>(`admin/users/${id}`)
+  },
 }

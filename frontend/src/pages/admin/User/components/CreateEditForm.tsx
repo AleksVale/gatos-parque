@@ -25,6 +25,7 @@ import AutocompleteService, {
 } from '@/services/AutocompleteService'
 import { useState, useCallback, useEffect } from 'react'
 import { TCreateUserSchema } from '../validation'
+import { useGoBack } from '@/hooks/useGoBack'
 
 const STATUS_OPTIONS = [
   { id: 'ACTIVE', label: 'Ativo' },
@@ -35,14 +36,18 @@ const STATUS_OPTIONS = [
 interface CreateEditUserFormProps {
   form: UseFormReturn<TCreateUserSchema>
   onSubmitForm: (data: TCreateUserSchema) => void
+  isEdit?: boolean
 }
 
 export function CreateEditUserForm({
   form,
   onSubmitForm,
+  isEdit = false,
 }: CreateEditUserFormProps) {
   const { t } = useTranslation()
   const [rolesOptions, setRolesOptions] = useState<Autocomplete[]>([])
+
+  const { goBack } = useGoBack()
   const documentRef = useMaskito({ options: doocumentMask })
 
   const phoneRef = useMaskito({ options: phoneMask })
@@ -50,7 +55,8 @@ export function CreateEditUserForm({
   const fetchRolesOptions = useCallback(async () => {
     const response = await AutocompleteService.fetchAutocomplete(['roles'])
     setRolesOptions(response.data.roles ?? [])
-  }, [])
+    form.setValue('roleId', form.getValues('roleId'))
+  }, [form])
 
   useEffect(() => {
     fetchRolesOptions()
@@ -224,30 +230,32 @@ export function CreateEditUserForm({
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t('Form.Password')}</FormLabel>
-                <FormControl>
-                  <Input
-                    type="password"
-                    placeholder={t('Form.Password')}
-                    autoComplete="new-password"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {!isEdit && (
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t('Form.Password')}</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder={t('Form.Password')}
+                      autoComplete="new-password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
         </div>
         <div className="flex gap-2 justify-end">
-          <Button type="button" variant={'destructive'}>
+          <Button onClick={goBack} type="button" variant={'destructive'}>
             Cancelar
           </Button>
-          <Button type="submit">Criar</Button>
+          <Button type="submit">{isEdit ? 'Atualizar' : 'Criar'}</Button>
         </div>
       </form>
     </Form>

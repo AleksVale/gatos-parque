@@ -2,6 +2,7 @@ export const ROUTES = {
   home: '/admin',
   users: '/admin/users',
   createUser: '/admin/users/new',
+  editUser: (id: string) => `/admin/users/${id}/e`,
 }
 
 export interface SuccessResponse {

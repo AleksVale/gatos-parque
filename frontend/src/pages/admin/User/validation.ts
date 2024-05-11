@@ -36,4 +36,6 @@ export const createUserSchema = z.object({
   roleId: z.string().uuid({ message: 'Campo obrigatório' }),
 })
 
+export const updateUserSchema = createUserSchema.omit({ password: true })
+
 export type TCreateUserSchema = z.infer<typeof createUserSchema>

@@ -6,6 +6,7 @@ import { Home } from './pages/admin/Home'
 import { ROUTES } from './constants/routes'
 import { CreateUser } from './pages/admin/User/new'
 import { ListUser } from './pages/admin/User/list'
+import { EditUser } from './pages/admin/User/edit'
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
       { path: '', element: <Home /> },
       { path: ROUTES.users, element: <ListUser /> },
       { path: ROUTES.createUser, element: <CreateUser /> },
+      { path: 'users/:id/e', element: <EditUser /> },
     ],
   },
 ])
