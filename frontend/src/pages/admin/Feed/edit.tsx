@@ -14,13 +14,15 @@ import { Button } from '@/components/ui/button'
 import { toast } from 'react-toastify'
 import { isAxiosError } from 'axios'
 import { useTranslation } from 'react-i18next'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useCallback, useEffect } from 'react'
 import { FeedService } from '@/services/FeedService'
-import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '@/constants/routes'
 import { useGoBack } from '@/hooks/useGoBack'
 
-export function CreateFeed() {
+export function EditFeed() {
   const { t } = useTranslation()
+  const { id } = useParams()
   const navigate = useNavigate()
   const { goBack } = useGoBack()
 
@@ -34,9 +36,10 @@ export function CreateFeed() {
 
   async function onSubmit(values: TCreateFeedSchema): Promise<void> {
     try {
-      const response = await FeedService.create(values);
+      console.log(values)
+      const response = await FeedService.update(values, id)
       if (response.data.success) {
-        toast.success('Postagem criada com sucesso.')
+        toast.success('Postagem editado com sucesso')
         navigate(ROUTES.feed)
       }
     } catch (err) {
@@ -47,6 +50,27 @@ export function CreateFeed() {
       )
     }
   }
+
+  const { reset } = form
+
+  const getFeed = useCallback(async () => {
+    try {
+      const { data } = await FeedService.get(id)
+      reset({
+        ...data,
+      })
+    } catch (err) {
+      toast.error(
+        isAxiosError(err)
+          ? err.response?.data.message
+          : t('errors.internalError'),
+      )
+    }
+  }, [reset, id, t])
+
+  useEffect(() => {
+    getFeed()
+  }, [getFeed])
 
   return (
     <div>

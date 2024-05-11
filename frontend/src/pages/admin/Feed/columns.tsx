@@ -9,12 +9,49 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { IFeed } from '@/interfaces/feed'
+import { FeedService } from '@/services/FeedService'
 import { ColumnDef } from '@tanstack/react-table'
-import { MoreHorizontal, Edit } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+import { MoreHorizontal, Edit, CirclePower } from 'lucide-react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { isAxiosError } from 'axios'
+import { useTranslation } from 'react-i18next'
+import { useCallback, useEffect, useState } from 'react'
+import { PaginationMeta } from '@/services/interfaces'
+import { DEFAULT_META_PAGINATION } from '@/constants/routes'
 
 export function useColumsFeed() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
+  const [searchParams] = useSearchParams()
+  const [data, setData] = useState<IFeed[]>([])
+  const [meta, setMeta] = useState<PaginationMeta>(DEFAULT_META_PAGINATION)
+  const fetchFeed = useCallback(async () => {
+    const response = await FeedService.list(searchParams)
+    setData(response.data.data)
+    setMeta(response.data.meta)
+  }, [searchParams])
+
+  useEffect(() => {
+    fetchFeed()
+  }, [fetchFeed])
+
+  async function changeStatus(id: string): Promise<void> {
+    try {
+      const response = await FeedService.updateStatus(id)
+      if (response.data.success) {
+        toast.success('Status da postagem alterado com sucesso.')
+        fetchFeed()
+      }
+    } catch (err) {
+      toast.error(
+        isAxiosError(err)
+          ? err.response?.data.message
+          : t('errors.internalError'),
+      )
+    }
+  }
+
   const columns: ColumnDef<IFeed>[] = [
     {
       accessorKey: 'title',
@@ -35,9 +72,18 @@ export function useColumsFeed() {
       ),
     },
     {
+      accessorKey: 'status',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Status" />
+      ),
+      cell: ({row}) => {
+        return <div>{row.original.status ? 'Ativo' : 'Inativo'}</div>
+      }
+    },
+    {
       id: 'actions',
       cell: ({ row }) => {
-        const user = row.original
+        const feed = row.original
 
         return (
           <Dialog>
@@ -51,12 +97,21 @@ export function useColumsFeed() {
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Ações</DropdownMenuLabel>
                 <DropdownMenuItem
-                  onClick={() => navigate(`admin/user/${user.id}/e`)}
+                  onClick={() => navigate(`/admin/feed/${feed.id}/e`)}
                   className="group flex items-center gap-2"
                 >
                   <Edit size={16} className="text-primary" />
                   <span className="group-hover:text-primary">
-                    Editar Feed
+                    Editar Postagem
+                  </span>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => changeStatus(feed.id)}
+                  className="group flex items-center gap-2"
+                >
+                  <CirclePower size={16} className="text-destructive" />
+                  <span className="group-hover:text-primary">
+                    Alterar Status Postagem
                   </span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -67,5 +122,5 @@ export function useColumsFeed() {
     },
   ]
 
-  return { columns }
+  return { columns, data, meta }
 }

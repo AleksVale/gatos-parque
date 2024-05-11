@@ -5,6 +5,7 @@ export const ROUTES = {
   createUser: '/admin/users/new',
   editUser: (id: string) => `/admin/users/${id}/e`,
   createFeed: '/admin/feed/new',
+  editFeed: (id: string) => `/admin/feed/${id}/e`,
 }
 
 export interface SuccessResponse {

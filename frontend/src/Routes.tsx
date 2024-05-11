@@ -9,6 +9,7 @@ import { ListUser } from './pages/admin/User/list'
 import { EditUser } from './pages/admin/User/edit'
 import { Feed } from './pages/admin/Feed/'
 import { CreateFeed } from './pages/admin/Feed/new'
+import { EditFeed } from './pages/admin/Feed/edit'
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
       { path: 'users/:id/e', element: <EditUser /> },
       { path: ROUTES.feed, element: <Feed /> },
       { path: ROUTES.createFeed, element: <CreateFeed /> },
+      { path: 'feed/:id/e', element: <EditFeed /> },
     ],
   },
 ])

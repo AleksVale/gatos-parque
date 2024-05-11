@@ -9,17 +9,20 @@ import { RoleGuard } from 'src/public/role/role.guard';
 import { Role } from 'src/public/role.enum';
 import { Roles } from 'src/public/decorators/roles/roles.decorator';
 import { ApiOkResponsePaginated } from 'src/public/decorators/paginatedResponse';
+import { SuccessResponseDTO } from 'src/utils/dto/success-response.dto';
+import { CurrentUser } from 'src/public/auth/current-user-decorator';
+import { TokenPayload } from 'src/public/auth/jwt.strategy';
 
 @UseGuards(JwtAuthGuard, RoleGuard)
 @Roles([Role.ADMIN])
 @ApiTags('Admin/Feed')
 @Controller('admin/feed')
 export class FeedController {
-  constructor(private readonly feedService: FeedService) {}
+  constructor(private readonly feedService: FeedService) { }
 
   @Post()
-  create(@Body() createFeedDto: CreateFeedDto) {
-    return this.feedService.create(createFeedDto);
+  create(@Body() createFeedDto: CreateFeedDto, @CurrentUser() user: TokenPayload) {
+    return this.feedService.create(createFeedDto, user);
   }
 
   @ApiOkResponsePaginated(FeedResponse)
@@ -31,16 +34,22 @@ export class FeedController {
     return this.feedService.findAll({ page, perPage });
   }
 
-  @ApiResponse({type: FeedResponse})
+  @ApiResponse({ type: FeedResponse })
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.feedService.findOne(+id);
+    return this.feedService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateFeedDto: UpdateFeedDto) {
-    return this.feedService.update(+id, updateFeedDto);
+    return this.feedService.update(id, updateFeedDto);
+  }
+
+  @Patch('/status/:id')
+  async updateStatus(@Param('id') id: string):Promise<SuccessResponseDTO> {
+    await this.feedService.updateStatus(id);
+    return { success: true }
   }
 
   @Delete(':id')
