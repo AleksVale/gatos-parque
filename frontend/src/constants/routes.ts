@@ -1,8 +1,10 @@
 export const ROUTES = {
   home: '/admin',
   users: '/admin/users',
+  feed: '/admin/feed',
   createUser: '/admin/users/new',
   editUser: (id: string) => `/admin/users/${id}/e`,
+  createFeed: '/admin/feed/new',
 }
 
 export interface SuccessResponse {

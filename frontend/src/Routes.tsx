@@ -7,6 +7,8 @@ import { ROUTES } from './constants/routes'
 import { CreateUser } from './pages/admin/User/new'
 import { ListUser } from './pages/admin/User/list'
 import { EditUser } from './pages/admin/User/edit'
+import { Feed } from './pages/admin/Feed/'
+import { CreateFeed } from './pages/admin/Feed/new'
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +24,8 @@ export const router = createBrowserRouter([
       { path: ROUTES.users, element: <ListUser /> },
       { path: ROUTES.createUser, element: <CreateUser /> },
       { path: 'users/:id/e', element: <EditUser /> },
+      { path: ROUTES.feed, element: <Feed /> },
+      { path: ROUTES.createFeed, element: <CreateFeed /> },
     ],
   },
 ])
