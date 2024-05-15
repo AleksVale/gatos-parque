@@ -36,7 +36,6 @@ export function EditFeed() {
 
   async function onSubmit(values: TCreateFeedSchema): Promise<void> {
     try {
-      console.log(values)
       const response = await FeedService.update(values, id)
       if (response.data.success) {
         toast.success('Postagem editado com sucesso')

@@ -1,7 +1,7 @@
 import { UserStatus } from '@/interfaces/user'
 import { validateCPF } from '@/lib/cpf'
 import { z } from 'zod'
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 
 const passwordValidation =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/

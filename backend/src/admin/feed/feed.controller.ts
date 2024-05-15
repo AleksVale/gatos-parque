@@ -42,8 +42,9 @@ export class FeedController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFeedDto: UpdateFeedDto) {
-    return this.feedService.update(id, updateFeedDto);
+  async update(@Param('id') id: string, @Body() updateFeedDto: UpdateFeedDto) {
+    await this.feedService.update(id, updateFeedDto);
+    return { success: true }
   }
 
   @Patch('/status/:id')
