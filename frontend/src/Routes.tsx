@@ -7,6 +7,9 @@ import { ROUTES } from './constants/routes'
 import { CreateUser } from './pages/admin/User/new'
 import { ListUser } from './pages/admin/User/list'
 import { EditUser } from './pages/admin/User/edit'
+import { ListCat } from './pages/admin/Cat/list'
+import { CreateCat } from './pages/admin/Cat/new'
+import { EditCat } from './pages/admin/Cat/edit'
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +24,10 @@ export const router = createBrowserRouter([
       { path: '', element: <Home /> },
       { path: ROUTES.users, element: <ListUser /> },
       { path: ROUTES.createUser, element: <CreateUser /> },
+      { path: ROUTES.cats, element: <ListCat /> },
+      { path: ROUTES.createCat, element: <CreateCat /> },
       { path: 'users/:id/e', element: <EditUser /> },
+      { path: 'cats/:id/e', element: <EditCat /> },
     ],
   },
 ])

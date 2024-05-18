@@ -9,7 +9,7 @@ import { CatResponseDto } from 'src/admin/cats/dto/cat-response.dto';
 @Injectable()
 export class CatsRepository extends BaseRepository<Cat> {
   constructor(private prismaService: PrismaService) {
-    super(prismaService, 'cats');
+    super(prismaService, 'cat');
   }
 
   async findAll(options: IFilterGetUsers) {
