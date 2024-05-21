@@ -10,6 +10,7 @@ const validUser = {
   email: 'example@example.com',
   firstName: 'John',
   lastName: 'Doe',
+  phoneNumber: '123456789',
   dateOfBirth: '1990-01-01',
   document: '80984422099',
   status: UserStatus.ACTIVE,

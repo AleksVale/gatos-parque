@@ -1,7 +1,7 @@
 import { Header } from '@/components/Header'
 import { MenuLink } from '@/components/MenuLink'
 import { ROUTES } from '@/constants/routes'
-import { Home, ScrollText, UserCircle } from 'lucide-react'
+import { Home, Cat, ScrollText, UserCircle } from 'lucide-react'
 import { Outlet } from 'react-router-dom'
 
 export function AdminLayout() {
@@ -13,6 +13,7 @@ export function AdminLayout() {
           <MenuLink icon={<Home />} label="Home" to={ROUTES.home} />
           <MenuLink icon={<UserCircle />} label="Usuários" to={ROUTES.users} />
           <MenuLink icon={<ScrollText />} label="Feed" to={ROUTES.feed} />
+          <MenuLink icon={<Cat />} label="Gatos" to={ROUTES.cats} />
         </div>
       </nav>
       <div className="w-full">
