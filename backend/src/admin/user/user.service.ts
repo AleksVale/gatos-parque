@@ -45,7 +45,7 @@ export class UserService {
       { id },
     );
   }
-  // ai qnd eu salvo tira
+
   findByEmail(email: string) {
     return this.userRepository.findByEmail(email);
   }

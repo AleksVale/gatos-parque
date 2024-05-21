@@ -166,7 +166,7 @@ export function CreateEditUserForm({
             name="status"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Perfil</FormLabel>
+                <FormLabel>Status</FormLabel>
                 <FormControl>
                   <Select
                     value={`${field.value}`}

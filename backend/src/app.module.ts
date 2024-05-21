@@ -12,6 +12,7 @@ import { AwsModule } from './public/aws/aws.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { LoggerModule } from './logger/logger.module';
 import { AutocompleteModule } from './public/autocomplete/autocomplete.module';
+import { CatsModule } from './admin/cats/cats.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { AutocompleteModule } from './public/autocomplete/autocomplete.module';
     AwsModule,
     LoggerModule,
     AutocompleteModule,
+    CatsModule,
   ],
   controllers: [AppController],
   providers: [
