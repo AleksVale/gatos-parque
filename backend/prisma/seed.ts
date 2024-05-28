@@ -27,6 +27,7 @@ async function main() {
         email: 'alexalexx3@gmail.com',
         password,
         dateOfBirth: new Date(),
+        phoneNumber: '31995554444',
         document: '12345678',
         firstName: 'Aleks',
         lastName: 'Vale',

@@ -23,10 +23,10 @@ import { UpdateUserAdminDTO } from './dto/update-user.dto';
 import { ApiOkResponsePaginated } from 'src/public/decorators/paginatedResponse';
 import { Role } from 'src/public/role.enum';
 
-@ApiTags('Admin/User')
+@ApiTags('Admin/Users')
 @UseGuards(JwtAuthGuard, RoleGuard)
 @Roles([Role.ADMIN])
-@Controller('admin/user')
+@Controller('admin/users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

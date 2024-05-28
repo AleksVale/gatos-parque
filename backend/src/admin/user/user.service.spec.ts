@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserService } from './user.service';
 
+// teste unitario aq 100% da service de cov
+
 import { UserRepository } from 'src/repositories/user.repository';
 import { PrismaService } from 'src/public/prisma/prisma.service';
 import { User, UserStatus } from '@prisma/client';
@@ -8,6 +10,7 @@ const validUser = {
   email: 'example@example.com',
   firstName: 'John',
   lastName: 'Doe',
+  phoneNumber: '123456789',
   dateOfBirth: '1990-01-01',
   document: '80984422099',
   status: UserStatus.ACTIVE,

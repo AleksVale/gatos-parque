@@ -6,11 +6,12 @@ import { Prisma, UserStatus } from '@prisma/client';
 import { Validator } from 'src/utils/validation';
 import { UpdateUserAdminDTO } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
-
+import * as dayjs from 'dayjs';
 export interface IFilterGetUsers {
   page: number;
   perPage: number;
 }
+
 @Injectable()
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
@@ -36,7 +37,13 @@ export class UserService {
     return this.userRepository.update<
       Prisma.UserUncheckedUpdateInput,
       Prisma.UserWhereUniqueInput
-    >(updateUserDto, { id });
+    >(
+      {
+        ...updateUserDto,
+        dateOfBirth: dayjs(updateUserDto.dateOfBirth).toDate(),
+      },
+      { id },
+    );
   }
 
   findByEmail(email: string) {

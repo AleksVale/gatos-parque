@@ -30,12 +30,14 @@ model Role {
   @@map("roles")
 }
 
+// ss ele converte tudo pra sql com migration
 model User {
   id          String     @id @default(uuid())
   email       String     @unique
   firstName   String     @map("first_name")
   lastName    String     @map("last_name")
   dateOfBirth DateTime   @map("date_of_birth")
+  phoneNumber String     @map("phone_number")
   document    String     @unique
   status      UserStatus @default(ACTIVE)
   password    String
@@ -120,6 +122,7 @@ model Feed {
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  status      Boolean
 
   @@map("feeds")
 }
