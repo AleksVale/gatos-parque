@@ -4,6 +4,7 @@ export type IRootStackParamList = {
   SignIn: undefined
   SignUp: undefined
   HomeScreen: undefined
+  Profile: undefined
 }
 
 export interface ISignInScreen
@@ -14,3 +15,6 @@ export interface ISignUpScreen
 
 export interface IHomeScreen
   extends NativeStackScreenProps<IRootStackParamList, 'HomeScreen'> {}
+
+export interface IProfileScreen
+  extends NativeStackScreenProps<IRootStackParamList, 'Profile'> {}

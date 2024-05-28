@@ -9,6 +9,8 @@ import { SignIn } from '../screens/SignIn'
 import { useAuth } from '../hooks/useAuth'
 import { SignUp } from '../screens/SignUp'
 import { IRootStackParamList } from '../Interfaces/NavigationInterface'
+import { Profile } from '../screens/Profile'
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 const Stack = createNativeStackNavigator<IRootStackParamList>()
 
@@ -45,12 +47,35 @@ const Navigation: React.FC = (): JSX.Element => {
     <NavigationContainer>
       {token ? (
         <Tab.Navigator
-          screenOptions={{
+          screenOptions={({ route }) => ({
             headerShown: false,
-          }}
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName
+
+              if (route.name === 'HomeScreen') {
+                iconName = focused ? 'home' : 'home-outline'
+              } else if (route.name === 'Perfil') {
+                iconName = focused ? 'person' : 'person-outline'
+              } else if (route.name === 'Gatos') {
+                iconName = focused ? 'paw' : 'paw-outline'
+              }
+
+              return (
+                <Ionicons
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  name={(iconName as any) ?? 'home'}
+                  size={size}
+                  color={color}
+                />
+              )
+            },
+            tabBarActiveTintColor: '#0b4f3a',
+            tabBarInactiveTintColor: 'gray',
+          })}
         >
           <Tab.Screen name="Home" component={HomeStack} />
-          <Tab.Screen name="Cat" component={Cat} />
+          <Tab.Screen name="Gatos" component={Cat} />
+          <Tab.Screen name="Perfil" component={Profile} />
         </Tab.Navigator>
       ) : (
         <AuthRoutes />

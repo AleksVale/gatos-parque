@@ -5,7 +5,7 @@ interface ErrorResponse {
   status: number
 }
 
-const serverURL = 'http://54.235.56.231/api'
+const serverURL = 'http://54.91.138.161/api'
 
 const http: AxiosInstance = axios.create({
   baseURL: serverURL,
