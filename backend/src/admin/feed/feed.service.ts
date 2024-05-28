@@ -9,9 +9,12 @@ import { TokenPayload } from 'src/public/auth/jwt.strategy';
 
 @Injectable()
 export class FeedService {
-  constructor(private readonly feedRepository: FeedRepository) { }
+  constructor(private readonly feedRepository: FeedRepository) {}
 
-  async create(createFeedDto: CreateFeedDto, user: TokenPayload): Promise<SuccessResponseDTO> {
+  async create(
+    createFeedDto: CreateFeedDto,
+    user: TokenPayload,
+  ): Promise<SuccessResponseDTO> {
     await this.feedRepository.create<Prisma.FeedUncheckedCreateInput>({
       ...createFeedDto,
       userId: user.id,
@@ -25,10 +28,9 @@ export class FeedService {
   }
 
   findOne(id: string) {
-    return this.feedRepository.find<
-      Prisma.UserWhereInput,
-      Prisma.UserInclude
-    >({ id });
+    return this.feedRepository.find<Prisma.UserWhereInput, Prisma.UserInclude>({
+      id,
+    });
   }
 
   update(id: string, updateFeedDto: UpdateFeedDto) {
@@ -50,17 +52,19 @@ export class FeedService {
     >({ id });
 
     if (!statusAtual) {
-      throw new BadRequestException('Postagem não encontrada')
+      throw new BadRequestException('Postagem não encontrada');
     }
     return this.feedRepository.update<
       Prisma.FeedUncheckedUpdateInput,
       Prisma.FeedWhereUniqueInput
-    >({
-      status: !statusAtual.status,
-    },
+    >(
       {
-        id
-      })
+        status: !statusAtual.status,
+      },
+      {
+        id,
+      },
+    );
   }
 
   remove(id: number) {

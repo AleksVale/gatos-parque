@@ -30,7 +30,7 @@ export function ListCat() {
         label="Lista de gatos"
         navigateTo={ROUTES.createCat}
         showButton
-        labelButton="Novo gato"
+        labelButton="Novo Gato"
       />
       <DataTable data={data} meta={meta} columns={columns} />
     </div>

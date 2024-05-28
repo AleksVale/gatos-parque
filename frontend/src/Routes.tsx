@@ -13,6 +13,7 @@ import { EditFeed } from './pages/admin/Feed/edit'
 import { ListCat } from './pages/admin/Cat/list'
 import { CreateCat } from './pages/admin/Cat/new'
 import { EditCat } from './pages/admin/Cat/edit'
+import { ListAdoption } from './pages/admin/Adoption/list'
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
       { path: ROUTES.users, element: <ListUser /> },
       { path: ROUTES.createUser, element: <CreateUser /> },
       { path: ROUTES.cats, element: <ListCat /> },
+      { path: ROUTES.adoption, element: <ListAdoption /> },
       { path: ROUTES.createCat, element: <CreateCat /> },
       { path: 'users/:id/e', element: <EditUser /> },
       { path: ROUTES.feed, element: <Feed /> },
