@@ -30,7 +30,7 @@ export function ListUser() {
         label="Lista de usuários"
         navigateTo={ROUTES.createUser}
         showButton
-        labelButton="Novo usuário"
+        labelButton="Novo Usuário"
       />
       <DataTable data={data} meta={meta} columns={columns} />
     </div>

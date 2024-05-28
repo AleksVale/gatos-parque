@@ -76,9 +76,9 @@ export function useColumsFeed() {
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Status" />
       ),
-      cell: ({row}) => {
+      cell: ({ row }) => {
         return <div>{row.original.status ? 'Ativo' : 'Inativo'}</div>
-      }
+      },
     },
     {
       id: 'actions',
