@@ -3,6 +3,7 @@ import { ApiResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { AuthenticateDTO } from './dto/authenticate.dto';
 import { AuthService } from './auth.service';
 import { AuthenticateResponseDTO } from './dto/authenticate.response.dto';
+import { CreateSupporterDTO } from './dto/create-account.dto';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -17,5 +18,10 @@ export class AuthController {
   @Post()
   authenticate(@Body() body: AuthenticateDTO) {
     return this.authService.authenticate(body);
+  }
+
+  @Post('signUp')
+  createSupporter(@Body() body: CreateSupporterDTO) {
+    return this.authService.createSupporter(body);
   }
 }

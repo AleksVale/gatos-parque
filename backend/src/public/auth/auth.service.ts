@@ -4,6 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'src/admin/user/user.service';
 import { AuthenticateResponseDTO } from './dto/authenticate.response.dto';
+import { CreateSupporterDTO } from './dto/create-account.dto';
 
 @Injectable()
 export class AuthService {
@@ -38,5 +39,9 @@ export class AuthService {
       firstName: user.firstName,
       lastName: user.lastName,
     };
+  }
+
+  async createSupporter(createSupporterBody: CreateSupporterDTO) {
+    return this.userService.createSupporter(createSupporterBody);
   }
 }

@@ -7,8 +7,10 @@ import { Home } from '../screens/Home'
 import { Cat } from '../screens/Cat'
 import { SignIn } from '../screens/SignIn'
 import { useAuth } from '../hooks/useAuth'
+import { SignUp } from '../screens/SignUp'
+import { IRootStackParamList } from '../Interfaces/NavigationInterface'
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator<IRootStackParamList>()
 
 const HomeStack = (): JSX.Element => (
   <Stack.Navigator
@@ -21,7 +23,7 @@ const HomeStack = (): JSX.Element => (
   </Stack.Navigator>
 )
 
-const AuthStack = createNativeStackNavigator()
+const AuthStack = createNativeStackNavigator<IRootStackParamList>()
 
 const AuthRoutes: React.FC = () => (
   <AuthStack.Navigator
@@ -30,6 +32,7 @@ const AuthRoutes: React.FC = () => (
     }}
   >
     <AuthStack.Screen name="SignIn" component={SignIn} />
+    <AuthStack.Screen name="SignUp" component={SignUp} />
   </AuthStack.Navigator>
 )
 

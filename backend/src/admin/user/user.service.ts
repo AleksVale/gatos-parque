@@ -7,6 +7,7 @@ import { Validator } from 'src/utils/validation';
 import { UpdateUserAdminDTO } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
 import * as dayjs from 'dayjs';
+import { CreateSupporterDTO } from 'src/public/auth/dto/create-account.dto';
 export interface IFilterGetUsers {
   page: number;
   perPage: number;
@@ -16,18 +17,45 @@ export interface IFilterGetUsers {
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
+  async createSupporter(createUserDto: CreateSupporterDTO) {
+    const user = await this.findByEmail(createUserDto.email);
+    if (user) {
+      throw new BadRequestException('Email já cadastrado');
+    }
+    if (
+      createUserDto.document &&
+      !Validator.validateCPF(createUserDto.document)
+    ) {
+      throw new BadRequestException('CPF inválido');
+    }
+    const hashedPass = await bcrypt.hash(createUserDto.password, 10);
+    await this.userRepository.create<Prisma.UserCreateInput>({
+      ...createUserDto,
+      password: hashedPass,
+      role: {
+        connect: { name: 'supporter' },
+      },
+    });
+    return { success: true };
+  }
+
   async create(createUserDto: CreateUserAdminDTO): Promise<SuccessResponseDTO> {
     const user = await this.findByEmail(createUserDto.email);
     if (user) {
       throw new BadRequestException('Email já cadastrado');
     }
-    if (!Validator.validateCPF(createUserDto.document)) {
+    if (
+      createUserDto.document &&
+      !Validator.validateCPF(createUserDto.document)
+    ) {
       throw new BadRequestException('CPF inválido');
     }
     const hashedPass = await bcrypt.hash(createUserDto.password, 10);
     await this.userRepository.create<Prisma.UserUncheckedCreateInput>({
       ...createUserDto,
-      dateOfBirth: new Date(createUserDto.dateOfBirth),
+      dateOfBirth: createUserDto.dateOfBirth
+        ? new Date(createUserDto.dateOfBirth)
+        : undefined,
       password: hashedPass,
     });
     return { success: true };

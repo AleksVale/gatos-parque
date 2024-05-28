@@ -8,23 +8,25 @@ import { useForm, Controller } from 'react-hook-form'
 import { InputText } from '../../components/Input'
 import { PasswordInput } from '../../components/Input/Password'
 import { Toast } from 'toastify-react-native'
-import { ISignInScreen } from '../../Interfaces/NavigationInterface'
+import { ISignUpScreen } from '../../Interfaces/NavigationInterface'
 import { TouchableOpacity } from 'react-native'
 
 const schema = z.object({
   email: z.string().min(1, 'E-mail é obrigatório').email('E-mail inválido'),
   password: z.string().min(1, 'Senha é obrigatória'),
+  firstName: z.string().min(1, 'Nome é obrigatório'),
+  lastName: z.string().min(1, 'Sobrenome é obrigatório'),
 })
 
-type SignInFormData = z.infer<typeof schema>
+type SignUpFormData = z.infer<typeof schema>
 
-export const SignIn: React.FC<ISignInScreen> = ({ navigation }) => {
+export const SignUp: React.FC<ISignUpScreen> = ({ navigation }) => {
   const { login } = useAuth()
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignInFormData>({
+  } = useForm<SignUpFormData>({
     resolver: zodResolver(schema),
     defaultValues: {
       email: '',
@@ -32,7 +34,7 @@ export const SignIn: React.FC<ISignInScreen> = ({ navigation }) => {
     },
   })
 
-  const handleLogin = async (data: SignInFormData) => {
+  const handleLogin = async (data: SignUpFormData) => {
     try {
       await login(data.email, data.password)
     } catch (err) {
@@ -45,7 +47,7 @@ export const SignIn: React.FC<ISignInScreen> = ({ navigation }) => {
     <>
       <AuthHeader />
       <Container>
-        <Title>Entrar</Title>
+        <Title>Criar conta</Title>
         <Controller
           control={control}
           name="email"
@@ -78,10 +80,10 @@ export const SignIn: React.FC<ISignInScreen> = ({ navigation }) => {
         </Button>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('SignUp')
+            navigation.goBack()
           }}
         >
-          <Link>Criar conta</Link>
+          <Link>Já tem conta? Entrar</Link>
         </TouchableOpacity>
       </Container>
     </>
