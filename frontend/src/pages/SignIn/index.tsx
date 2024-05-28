@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '@/constants/routes'
 import { ROLES } from '@/constants/roles'
 import { useTranslation } from 'react-i18next'
+import logo from '../../assets/Logo.png'
 
 export function SignIn() {
   const navigate = useNavigate()
@@ -54,7 +55,8 @@ export function SignIn() {
   return (
     <div className="w-1/3">
       <Helmet title="Login" />
-      <section className="p-4 bg-secondary rounded w-full">
+      <section className="px-4 py-2 bg-secondary rounded w-full">
+        <img src={logo} width={200} className="mx-auto" alt="" />
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField

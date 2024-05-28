@@ -14,6 +14,7 @@ import { LoggerModule } from './logger/logger.module';
 import { AutocompleteModule } from './public/autocomplete/autocomplete.module';
 import { FeedModule } from './admin/feed/feed.module';
 import { CatsModule } from './admin/cats/cats.module';
+import { SupporterModule } from './supporter/supporter/supporter.module';
 import { AdoptionModule } from './admin/adoption/adoption.module';
 
 @Module({
@@ -36,6 +37,7 @@ import { AdoptionModule } from './admin/adoption/adoption.module';
     AutocompleteModule,
     FeedModule,
     CatsModule,
+    SupporterModule,
     AdoptionModule,
   ],
   controllers: [AppController],
