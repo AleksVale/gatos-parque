@@ -19,6 +19,12 @@ import { useCallback, useEffect, useState } from 'react'
 import { PaginationMeta } from '@/services/interfaces'
 import { DEFAULT_META_PAGINATION } from '@/constants/routes'
 
+enum RequestLabel {
+  PENDING = 'Pendente',
+  APPROVED = 'Aprovado',
+  REJECTED = 'Rejeitado',
+}
+
 export function useColumsAdoption() {
   const [searchParams] = useSearchParams()
   const [data, setData] = useState<IAdoption[]>([])
@@ -76,6 +82,7 @@ export function useColumsAdoption() {
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Status" />
       ),
+      accessorFn: (row) => RequestLabel[row.status],
     },
 
     {

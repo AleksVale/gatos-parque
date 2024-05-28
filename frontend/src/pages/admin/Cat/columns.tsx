@@ -15,6 +15,11 @@ import { ColumnDef } from '@tanstack/react-table'
 import { MoreHorizontal, Edit } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
+enum CatsLabel {
+  ACTIVE = 'Ativo',
+  ADOPTED = 'Adotado',
+  DISABLED = 'Desativado',
+}
 export function useColumsCat() {
   const navigate = useNavigate()
   const columns: ColumnDef<ICat>[] = [
@@ -41,6 +46,7 @@ export function useColumsCat() {
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Status" />
       ),
+      accessorFn: (row) => CatsLabel[row.status],
     },
 
     {
