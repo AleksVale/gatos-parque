@@ -1,5 +1,9 @@
 import styled from 'styled-components/native'
 
+interface IImageProps {
+  keyboard?: boolean
+}
+
 export const Container = styled.View`
   width: 100%;
   height: 150px;
@@ -15,9 +19,9 @@ export const BackButton = styled.TouchableOpacity`
   left: 16px;
 `
 
-export const Logo = styled.Image`
+export const Logo = styled.Image<IImageProps>`
   z-index: 99;
   width: 150px;
   height: 150px;
-  margin: 0 auto -150px;
+  margin: 0 auto ${({ keyboard }) => (keyboard ? '0' : '-150px')};
 `
