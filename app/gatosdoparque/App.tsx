@@ -1,18 +1,17 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Home } from './screens/Home';
-
-
-const Stack = createNativeStackNavigator();
+import React from 'react'
+import Navigation from './src/navigation'
+import { ThemeProvider } from 'styled-components'
+import { defaultTheme } from './src/styles/themes/default'
+import { AuthProvider } from './src/context/Auth'
+import ToastManager from 'toastify-react-native'
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    <ThemeProvider theme={defaultTheme}>
+      <AuthProvider>
+        <ToastManager />
+        <Navigation />
+      </AuthProvider>
+    </ThemeProvider>
+  )
 }
-
