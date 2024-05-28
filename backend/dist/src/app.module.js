@@ -24,6 +24,7 @@ const autocomplete_module_1 = require("./public/autocomplete/autocomplete.module
 const feed_module_1 = require("./admin/feed/feed.module");
 const cats_module_1 = require("./admin/cats/cats.module");
 const supporter_module_1 = require("./supporter/supporter/supporter.module");
+const adoption_module_1 = require("./admin/adoption/adoption.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -49,6 +50,7 @@ exports.AppModule = AppModule = __decorate([
             feed_module_1.FeedModule,
             cats_module_1.CatsModule,
             supporter_module_1.SupporterModule,
+            adoption_module_1.AdoptionModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [

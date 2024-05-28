@@ -28,7 +28,9 @@ let FeedService = class FeedService {
         return this.feedRepository.findAll({ page, perPage });
     }
     findOne(id) {
-        return this.feedRepository.find({ id });
+        return this.feedRepository.find({
+            id,
+        });
     }
     update(id, updateFeedDto) {
         return this.feedRepository.update({
@@ -43,7 +45,7 @@ let FeedService = class FeedService {
         return this.feedRepository.update({
             status: !statusAtual.status,
         }, {
-            id
+            id,
         });
     }
     remove(id) {
