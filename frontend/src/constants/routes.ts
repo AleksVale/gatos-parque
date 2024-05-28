@@ -3,10 +3,11 @@ export const ROUTES = {
   users: '/admin/users',
   feed: '/admin/feed',
   cats: '/admin/cats',
+  adoption: '/admin/adoption',
   createUser: '/admin/users/new',
+  createFeed: '/admin/feed/new',
   createCat: '/admin/cats/new',
   editUser: (id: string) => `/admin/users/${id}/e`,
-  createFeed: '/admin/feed/new',
   editFeed: (id: string) => `/admin/feed/${id}/e`,
   editCat: (id: string) => `/admin/cats/${id}/e`,
 }

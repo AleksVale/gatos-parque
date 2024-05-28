@@ -107,8 +107,10 @@ export function EditFeed() {
             />
           </div>
           <div className="flex gap-2 justify-end">
-            <Button variant={'destructive'} type='button' onClick={goBack}>Cancelar</Button>
-            <Button type='submit'>Criar</Button>
+            <Button variant={'destructive'} type="button" onClick={goBack}>
+              Cancelar
+            </Button>
+            <Button type="submit">Criar</Button>
           </div>
         </form>
       </Form>
