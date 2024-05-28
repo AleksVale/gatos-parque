@@ -1,3 +1,4 @@
+import { SignUpFormData } from '../screens/SignUp'
 import http from '../utils/http'
 
 interface LoginResponse {
@@ -13,6 +14,10 @@ export const AuthService = {
       email,
       password,
     })
+    return response.data
+  },
+  async createSupporter(data: SignUpFormData) {
+    const response = await http.post('/auth/signUp', data)
     return response.data
   },
 }

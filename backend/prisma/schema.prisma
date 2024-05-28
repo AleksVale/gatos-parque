@@ -36,9 +36,9 @@ model User {
   email       String     @unique
   firstName   String     @map("first_name")
   lastName    String     @map("last_name")
-  dateOfBirth DateTime   @map("date_of_birth")
-  phoneNumber String     @map("phone_number")
-  document    String     @unique
+  dateOfBirth DateTime?  @map("date_of_birth")
+  phoneNumber String?    @map("phone_number")
+  document    String?    @unique
   status      UserStatus @default(ACTIVE)
   password    String
   photoKey    String?    @map("photo_key")

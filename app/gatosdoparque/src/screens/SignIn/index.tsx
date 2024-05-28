@@ -8,6 +8,8 @@ import { useForm, Controller } from 'react-hook-form'
 import { InputText } from '../../components/Input'
 import { PasswordInput } from '../../components/Input/Password'
 import { Toast } from 'toastify-react-native'
+import { ISignInScreen } from '../../Interfaces/NavigationInterface'
+import { TouchableOpacity } from 'react-native'
 
 const schema = z.object({
   email: z.string().min(1, 'E-mail é obrigatório').email('E-mail inválido'),
@@ -16,7 +18,7 @@ const schema = z.object({
 
 type SignInFormData = z.infer<typeof schema>
 
-export const SignIn: React.FC = () => {
+export const SignIn: React.FC<ISignInScreen> = ({ navigation }) => {
   const { login } = useAuth()
   const {
     control,
@@ -74,7 +76,13 @@ export const SignIn: React.FC = () => {
         <Button onPress={handleSubmit(handleLogin)}>
           <ButtonText>Entrar</ButtonText>
         </Button>
-        <Link>Criar conta</Link>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('SignUp')
+          }}
+        >
+          <Link>Criar conta</Link>
+        </TouchableOpacity>
       </Container>
     </>
   )

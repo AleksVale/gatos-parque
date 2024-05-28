@@ -17,4 +17,5 @@ export const ErrorMessage = styled.Text`
 export const InputContainer = styled.View`
   width: 100%;
   margin-bottom: 10px;
+  z-index: 9999;
 `

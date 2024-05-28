@@ -17,9 +17,9 @@ const InputContainer = styled.View`
   align-items: center;
   border-width: 1px;
   border-color: ${({ theme }) => theme['base-input']};
-  background-color: ${({ theme }) => theme.white};
+  background-color: ${(props) => props.theme['base-input']};
   border-radius: 4px;
-  padding: 8px;
+  padding: 14px;
 `
 
 const StyledTextInput = styled.TextInput`
