@@ -5,7 +5,7 @@ interface ErrorResponse {
   status: number
 }
 
-const serverURL = 'http://54.235.56.231/api'
+const serverURL = 'http://192.168.122.1:5005/api'
 
 const http: AxiosInstance = axios.create({
   baseURL: serverURL,
@@ -19,7 +19,7 @@ http.interceptors.request.use(
   async (config: InternalAxiosRequestConfig<unknown>) => {
     const token = await AsyncStorage.getItem('token')
     if (token && token !== 'undefined') {
-      config.headers.Authorization = `Bearer ${JSON.parse(token)}`
+      config.headers.Authorization = `Bearer ${token}`
     }
     return config
   },
