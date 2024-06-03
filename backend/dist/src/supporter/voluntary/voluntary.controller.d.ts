@@ -1,13 +1,14 @@
+import { VoluntaryService } from './voluntary.service';
 import { CreateVoluntaryDto } from './dto/create-voluntary.dto';
 import { UpdateVoluntaryDto } from './dto/update-voluntary.dto';
-import { VoluntaryRepository } from 'src/repositories/voluntary.repository';
 import { SuccessResponseDTO } from 'src/utils/dto/success-response.dto';
-import { IFilterGetUsers } from '../user/user.service';
-export declare class VoluntaryService {
-    private readonly voluntaryRepository;
-    constructor(voluntaryRepository: VoluntaryRepository);
+import { TokenPayload } from 'src/public/auth/jwt.strategy';
+export declare class VoluntaryController {
+    private readonly voluntaryService;
+    constructor(voluntaryService: VoluntaryService);
     create(createVoluntaryDto: CreateVoluntaryDto): Promise<SuccessResponseDTO>;
-    findAll(options: IFilterGetUsers): Promise<import("prisma-pagination").PaginatedResult<import("./dto/voluntary-response.dto").VoluntaryResponseDto>>;
+    update(id: string, updateVoluntaryDto: UpdateVoluntaryDto): Promise<SuccessResponseDTO>;
+    findAll(page: number, perPage: number, user: TokenPayload): Promise<import("prisma-pagination").PaginatedResult<import("../../admin/voluntary/dto/voluntary-response.dto").VoluntaryResponseDto>>;
     findOne(id: string): Promise<{
         id: string;
         firstName: string;
@@ -21,6 +22,5 @@ export declare class VoluntaryService {
         createdAt: Date;
         updatedAt: Date;
     }>;
-    update(id: string, updateVoluntaryDto: UpdateVoluntaryDto): Promise<any>;
-    remove(id: string): Promise<any>;
+    remove(id: string): Promise<SuccessResponseDTO>;
 }

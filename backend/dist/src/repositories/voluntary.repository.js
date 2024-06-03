@@ -16,12 +16,12 @@ const prisma_service_1 = require("../public/prisma/prisma.service");
 const prisma_pagination_1 = require("prisma-pagination");
 let VoluntaryRepository = class VoluntaryRepository extends base_repository_1.BaseRepository {
     constructor(prismaService) {
-        super(prismaService, 'adoption');
+        super(prismaService, 'voluntaryRequest');
         this.prismaService = prismaService;
     }
     async findAll(options) {
         const paginate = (0, prisma_pagination_1.createPaginator)({ perPage: options.perPage });
-        return paginate(this.prismaService.adoption, {
+        return paginate(this.prismaService.voluntaryRequest, {
             where: {},
             orderBy: { createdAt: 'asc' },
         }, {

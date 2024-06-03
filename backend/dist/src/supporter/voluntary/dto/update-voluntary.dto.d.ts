@@ -3,10 +3,9 @@ declare const UpdateVoluntaryDto_base: import("nestjs-zod").ZodDto<{
     lastName?: string | undefined;
     dateOfBirth?: string | undefined;
     document?: string | undefined;
-    status?: "PENDING" | "APPROVED" | "REJECTED" | undefined;
+    reason?: string | undefined;
     photoKey?: string | null | undefined;
     addressId?: string | undefined;
-    reason?: string | undefined;
 }, import("zod").ZodObjectDef<{
     firstName: import("zod").ZodOptional<import("zod").ZodString>;
     lastName: import("zod").ZodOptional<import("zod").ZodString>;
@@ -15,20 +14,14 @@ declare const UpdateVoluntaryDto_base: import("nestjs-zod").ZodDto<{
     reason: import("zod").ZodOptional<import("zod").ZodString>;
     photoKey: import("zod").ZodOptional<import("zod").ZodOptional<import("zod").ZodNullable<import("zod").ZodString>>>;
     addressId: import("zod").ZodOptional<import("zod").ZodString>;
-    status: import("zod").ZodOptional<import("zod").ZodNativeEnum<{
-        PENDING: "PENDING";
-        APPROVED: "APPROVED";
-        REJECTED: "REJECTED";
-    }>>;
 }, "strip", import("zod").ZodTypeAny>, {
     firstName?: string | undefined;
     lastName?: string | undefined;
     dateOfBirth?: string | undefined;
     document?: string | undefined;
-    status?: "PENDING" | "APPROVED" | "REJECTED" | undefined;
+    reason?: string | undefined;
     photoKey?: string | null | undefined;
     addressId?: string | undefined;
-    reason?: string | undefined;
 }>;
 export declare class UpdateVoluntaryDto extends UpdateVoluntaryDto_base {
 }

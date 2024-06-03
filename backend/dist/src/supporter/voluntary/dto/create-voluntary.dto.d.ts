@@ -7,28 +7,21 @@ export declare const createVoluntarySchema: z.ZodObject<{
     reason: z.ZodString;
     photoKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     addressId: z.ZodString;
-    status: z.ZodNativeEnum<{
-        PENDING: "PENDING";
-        APPROVED: "APPROVED";
-        REJECTED: "REJECTED";
-    }>;
 }, "strip", z.ZodTypeAny, {
     firstName: string;
     lastName: string;
     dateOfBirth: string;
     document: string;
-    status: "PENDING" | "APPROVED" | "REJECTED";
-    addressId: string;
     reason: string;
+    addressId: string;
     photoKey?: string | null | undefined;
 }, {
     firstName: string;
     lastName: string;
     dateOfBirth: string;
     document: string;
-    status: "PENDING" | "APPROVED" | "REJECTED";
-    addressId: string;
     reason: string;
+    addressId: string;
     photoKey?: string | null | undefined;
 }>;
 declare const CreateVoluntaryDto_base: import("nestjs-zod").ZodDto<{
@@ -36,9 +29,8 @@ declare const CreateVoluntaryDto_base: import("nestjs-zod").ZodDto<{
     lastName: string;
     dateOfBirth: string;
     document: string;
-    status: "PENDING" | "APPROVED" | "REJECTED";
-    addressId: string;
     reason: string;
+    addressId: string;
     photoKey?: string | null | undefined;
 }, z.ZodObjectDef<{
     firstName: z.ZodString;
@@ -48,19 +40,13 @@ declare const CreateVoluntaryDto_base: import("nestjs-zod").ZodDto<{
     reason: z.ZodString;
     photoKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     addressId: z.ZodString;
-    status: z.ZodNativeEnum<{
-        PENDING: "PENDING";
-        APPROVED: "APPROVED";
-        REJECTED: "REJECTED";
-    }>;
 }, "strip", z.ZodTypeAny>, {
     firstName: string;
     lastName: string;
     dateOfBirth: string;
     document: string;
-    status: "PENDING" | "APPROVED" | "REJECTED";
-    addressId: string;
     reason: string;
+    addressId: string;
     photoKey?: string | null | undefined;
 }>;
 export declare class CreateVoluntaryDto extends CreateVoluntaryDto_base {
