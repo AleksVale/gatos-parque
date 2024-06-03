@@ -1,4 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, DefaultValuePipe, Query, ParseIntPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+  DefaultValuePipe,
+  Query,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { FeedService } from './feed.service';
 import { CreateFeedDto } from './dto/create-feed.dto';
 import { UpdateFeedDto } from './dto/update-feed.dto';
@@ -18,10 +30,13 @@ import { TokenPayload } from 'src/public/auth/jwt.strategy';
 @ApiTags('Admin/Feed')
 @Controller('admin/feed')
 export class FeedController {
-  constructor(private readonly feedService: FeedService) { }
+  constructor(private readonly feedService: FeedService) {}
 
   @Post()
-  create(@Body() createFeedDto: CreateFeedDto, @CurrentUser() user: TokenPayload) {
+  create(
+    @Body() createFeedDto: CreateFeedDto,
+    @CurrentUser() user: TokenPayload,
+  ) {
     return this.feedService.create(createFeedDto, user);
   }
 
@@ -35,7 +50,6 @@ export class FeedController {
   }
 
   @ApiResponse({ type: FeedResponse })
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.feedService.findOne(id);
@@ -44,13 +58,13 @@ export class FeedController {
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateFeedDto: UpdateFeedDto) {
     await this.feedService.update(id, updateFeedDto);
-    return { success: true }
+    return { success: true };
   }
 
   @Patch('/status/:id')
-  async updateStatus(@Param('id') id: string):Promise<SuccessResponseDTO> {
+  async updateStatus(@Param('id') id: string): Promise<SuccessResponseDTO> {
     await this.feedService.updateStatus(id);
-    return { success: true }
+    return { success: true };
   }
 
   @Delete(':id')

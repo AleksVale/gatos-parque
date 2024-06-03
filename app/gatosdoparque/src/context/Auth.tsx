@@ -35,6 +35,7 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 
   const login = useCallback(async (email: string, password: string) => {
     const response = await AuthService.login(email, password)
+    await AsyncStorage.setItem('token', response.token)
     setToken(response.token)
     return response.token
   }, [])
