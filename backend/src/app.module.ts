@@ -16,6 +16,7 @@ import { FeedModule } from './admin/feed/feed.module';
 import { CatsModule } from './admin/cats/cats.module';
 import { SupporterModule } from './supporter/supporter/supporter.module';
 import { AdoptionModule } from './admin/adoption/adoption.module';
+import { FeedModule as SupporterFeedModule } from './supporter/feed/feed.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { AdoptionModule } from './admin/adoption/adoption.module';
     CatsModule,
     SupporterModule,
     AdoptionModule,
+    SupporterFeedModule,
   ],
   controllers: [AppController],
   providers: [

@@ -23,7 +23,7 @@ export const SignIn: React.FC<ISignInScreen> = ({ navigation }) => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<SignInFormData>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -73,7 +73,7 @@ export const SignIn: React.FC<ISignInScreen> = ({ navigation }) => {
             />
           )}
         />
-        <Button onPress={handleSubmit(handleLogin)}>
+        <Button disabled={isSubmitting} onPress={handleSubmit(handleLogin)}>
           <ButtonText>Entrar</ButtonText>
         </Button>
         <TouchableOpacity
