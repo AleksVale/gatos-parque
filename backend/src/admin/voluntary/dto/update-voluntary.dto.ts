@@ -1,4 +1,6 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateVoluntaryDto } from './create-voluntary.dto';
+import { createZodDto } from 'nestjs-zod';
+import { createVoluntarySchema } from './create-voluntary.dto';
 
-export class UpdateVoluntaryDto extends PartialType(CreateVoluntaryDto) {}
+const updateVoluntarySchema = createVoluntarySchema.partial();
+
+export class UpdateVoluntaryDto extends createZodDto(updateVoluntarySchema) {}

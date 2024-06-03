@@ -1,1 +1,1 @@
-{"version":3,"file":"update-voluntary.dto.js","sourceRoot":"","sources":["../../../../../src/admin/voluntary/dto/update-voluntary.dto.ts"],"names":[],"mappings":";;;AAAA,6CAA8C;AAC9C,iEAA4D;AAE5D,MAAa,kBAAmB,SAAQ,IAAA,qBAAW,EAAC,yCAAkB,CAAC;CAAG;AAA1E,gDAA0E"}
+{"version":3,"file":"update-voluntary.dto.js","sourceRoot":"","sources":["../../../../../src/admin/voluntary/dto/update-voluntary.dto.ts"],"names":[],"mappings":";;;AAAA,2CAA0C;AAC1C,iEAA+D;AAE/D,MAAM,qBAAqB,GAAG,4CAAqB,CAAC,OAAO,EAAE,CAAC;AAE9D,MAAa,kBAAmB,SAAQ,IAAA,yBAAY,EAAC,qBAAqB,CAAC;CAAG;AAA9E,gDAA8E"}

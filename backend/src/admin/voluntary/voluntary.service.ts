@@ -1,26 +1,49 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateVoluntaryDto } from './dto/create-voluntary.dto';
 import { UpdateVoluntaryDto } from './dto/update-voluntary.dto';
+import { VoluntaryRepository } from 'src/repositories/voluntary.repository';
+import { SuccessResponseDTO } from 'src/utils/dto/success-response.dto';
+import { RequestStatus, Prisma } from '@prisma/client';
+import { IFilterGetUsers } from '../user/user.service';
 
 @Injectable()
 export class VoluntaryService {
-  create(createVoluntaryDto: CreateVoluntaryDto) {
-    return 'This action adds a new voluntary';
+  constructor(private readonly voluntaryRepository: VoluntaryRepository) {}
+  async create(
+    createVoluntaryDto: CreateVoluntaryDto,
+  ): Promise<SuccessResponseDTO> {
+    await this.voluntaryRepository.create<Prisma.VoluntaryRequestUncheckedCreateInput>(
+      createVoluntaryDto,
+    );
+    return { success: true };
   }
 
-  findAll() {
-    return `This action returns all voluntary`;
+  findAll(options: IFilterGetUsers) {
+    return this.voluntaryRepository.findAll(options);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} voluntary`;
+  async findOne(id: string) {
+    const voluntary = await this.voluntaryRepository.find<
+      Prisma.VoluntaryRequestWhereInput,
+      Prisma.VoluntaryRequestInclude
+    >({
+      id,
+    });
+    if (!voluntary) throw new BadRequestException('Voluntário não encontrado');
+    return voluntary;
   }
 
-  update(id: number, updateVoluntaryDto: UpdateVoluntaryDto) {
-    return `This action updates a #${id} voluntary`;
+  update(id: string, updateVoluntaryDto: UpdateVoluntaryDto) {
+    return this.voluntaryRepository.update<
+      Prisma.VoluntaryRequestUncheckedUpdateInput,
+      Prisma.VoluntaryRequestWhereUniqueInput
+    >(updateVoluntaryDto, { id });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} voluntary`;
+  async remove(id: string) {
+    return this.voluntaryRepository.update<
+      Prisma.VoluntaryRequestUncheckedUpdateInput,
+      Prisma.VoluntaryRequestWhereUniqueInput
+    >({ status: RequestStatus.REJECTED }, { id });
   }
 }
