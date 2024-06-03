@@ -1,0 +1,18 @@
+import { Text } from 'react-native'
+import { IFeed } from '../../Interfaces/IFeed'
+import { FeedView } from './styles'
+import React from 'react'
+
+export const FeedCard: React.FC<Pick<IFeed, 'title' | 'description'>> = ({
+  description,
+  title,
+}) => {
+  console.log(description)
+
+  return (
+    <FeedView>
+      <Text>{title}</Text>
+      <Text>{description}</Text>
+    </FeedView>
+  )
+}

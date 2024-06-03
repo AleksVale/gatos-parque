@@ -4,6 +4,7 @@ export const ROUTES = {
   feed: '/admin/feed',
   cats: '/admin/cats',
   adoption: '/admin/adoption',
+  voluntary: '/admin/voluntary',
   createUser: '/admin/users/new',
   createFeed: '/admin/feed/new',
   createCat: '/admin/cats/new',

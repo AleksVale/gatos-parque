@@ -52,6 +52,8 @@ export const SignUp: React.FC<ISignUpScreen> = ({ navigation }) => {
     defaultValues: {
       email: '',
       password: '',
+      firstName: '',
+      lastName: '',
     },
   })
 
@@ -85,7 +87,7 @@ export const SignUp: React.FC<ISignUpScreen> = ({ navigation }) => {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                error={errors.email?.message}
+                error={errors.firstName?.message}
               />
             )}
           />
@@ -98,7 +100,7 @@ export const SignUp: React.FC<ISignUpScreen> = ({ navigation }) => {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                error={errors.email?.message}
+                error={errors.lastName?.message}
               />
             )}
           />
