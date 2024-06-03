@@ -1,22 +1,53 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React, { useCallback, useState } from 'react'
+import { FlatList } from 'react-native'
+import { FeedService } from '../../services/feed.service'
+import {
+  DEFAULT_META_PAGINATION,
+  PaginationMeta,
+} from '../../Interfaces/Pagination'
+import { IFeed } from '../../Interfaces/IFeed'
+import { useFocusEffect } from '@react-navigation/native'
+import { Container } from './styles'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { FeedCard } from '../../components/FeedCard'
+import { BaseHeader } from '../../components/BaseHeader'
 
 export function Home() {
+  const [data, setData] = useState<IFeed[]>([])
+  const [meta, setMeta] = useState<PaginationMeta>(DEFAULT_META_PAGINATION)
+  const insets = useSafeAreaInsets()
+
+  const getFeeds = useCallback(async () => {
+    const response = await FeedService.getAllFeeds(
+      meta.currentPage,
+      meta.perPage,
+    )
+    setData(response.data.data)
+    setMeta(response.data.meta)
+  }, [meta.currentPage, meta.perPage])
+
+  useFocusEffect(
+    React.useCallback(() => {
+      getFeeds()
+    }, [getFeeds]),
+  )
   return (
-    <View
+    <Container
       style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
+        paddingTop: insets.top,
+        paddingBottom: insets.bottom,
+        paddingLeft: insets.left,
+        paddingRight: insets.right,
       }}
     >
-      <Text>Gatos do Parque</Text>
-      <Text>Seja bem-vindo ao aplicativo dos gatos do parque!</Text>
-      <Text>
-        Aqui você pode ver fotos dos gatos do parque, saber mais sobre eles e
-        até adotar um!
-      </Text>
-    </View>
+      <BaseHeader label="Postagens" />
+      <FlatList
+        data={data}
+        keyExtractor={(item: IFeed) => item.id}
+        renderItem={({ item }: { item: IFeed }) => (
+          <FeedCard description={item.description} title={item.title} />
+        )}
+      />
+    </Container>
   )
 }
