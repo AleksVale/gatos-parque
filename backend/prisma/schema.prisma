@@ -136,8 +136,8 @@ model VoluntaryRequest {
   reason          String
   photoKey        String?           @map("photo_key")
   status          RequestStatus
-  addressId       String?            @map("address_id")
-  address         Address?           @relation(fields: [addressId], references: [id])
+  addressId       String?           @map("address_id")
+  address         Address?          @relation(fields: [addressId], references: [id])
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
   PhotoKeyAmbient PhotoKeyAmbient[]
@@ -154,4 +154,14 @@ model PhotoKeyAmbient {
   updatedAt          DateTime         @updatedAt
 
   @@map("photo_keys_ambient")
+}
+
+model Point {
+  id        Int      @id @default(autoincrement())
+  name      String
+  reference String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("points")
 }
