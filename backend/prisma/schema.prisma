@@ -50,6 +50,7 @@ model User {
   updatedAt   DateTime   @updatedAt
   Adoption    Adoption[]
   Feed        Feed[]
+  Route       Route[]
 
   @@map("users")
 }
@@ -157,11 +158,41 @@ model PhotoKeyAmbient {
 }
 
 model Point {
-  id        Int      @id @default(autoincrement())
-  name      String
-  reference String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         Int          @id @default(autoincrement())
+  name       String
+  reference  String
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  RoutePoint RoutePoint[]
 
   @@map("points")
+}
+
+model Route {
+  id         Int          @id @default(autoincrement())
+  name       String
+  userId     String       @map("user_id")
+  user       User         @relation(fields: [userId], references: [id])
+  monday     Boolean      @default(false)
+  tuesday    Boolean      @default(false)
+  wednesday  Boolean      @default(false)
+  thursday   Boolean      @default(false)
+  friday     Boolean      @default(false)
+  saturday   Boolean      @default(false)
+  sunday     Boolean      @default(false)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  RoutePoint RoutePoint[]
+
+  @@map("routes")
+}
+
+model RoutePoint {
+  routeId Int
+  pointId Int
+  route   Route @relation(fields: [routeId], references: [id])
+  point   Point @relation(fields: [pointId], references: [id])
+
+  @@id([routeId, pointId])
+  @@map("routes_points")
 }

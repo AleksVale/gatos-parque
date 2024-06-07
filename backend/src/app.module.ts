@@ -19,6 +19,7 @@ import { AdoptionModule } from './admin/adoption/adoption.module';
 import { VoluntaryModule } from './admin/voluntary/voluntary.module';
 import { FeedModule as SupporterFeedModule } from './supporter/feed/feed.module';
 import { PointsModule } from './admin/points/points.module';
+import { RouteModule } from './admin/route/route.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { PointsModule } from './admin/points/points.module';
     VoluntaryModule,
     SupporterFeedModule,
     PointsModule,
+    RouteModule,
   ],
   controllers: [AppController],
   providers: [
