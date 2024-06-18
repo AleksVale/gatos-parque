@@ -15,6 +15,12 @@ import { CreateCat } from './pages/admin/Cat/new'
 import { EditCat } from './pages/admin/Cat/edit'
 import { ListAdoption } from './pages/admin/Adoption/list'
 import { ListVoluntary } from './pages/admin/Voluntary/list'
+import { EditRoute } from './pages/admin/Routes/edit'
+import { ListRoute } from './pages/admin/Routes/list'
+import { CreateRoute } from './pages/admin/Routes/new'
+import { EditPoint } from './pages/admin/Point/edit'
+import { CreatePoint } from './pages/admin/Point/new'
+import { ListPoint } from './pages/admin/Point'
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +44,12 @@ export const router = createBrowserRouter([
       { path: ROUTES.createFeed, element: <CreateFeed /> },
       { path: 'feed/:id/e', element: <EditFeed /> },
       { path: 'cats/:id/e', element: <EditCat /> },
+      { path: ROUTES.routes, element: <ListRoute /> },
+      { path: ROUTES.createRoute, element: <CreateRoute /> },
+      { path: 'routes/:id/e', element: <EditRoute /> },
+      { path: ROUTES.point, element: <ListPoint /> },
+      { path: ROUTES.createPoint, element: <CreatePoint /> },
+      { path: 'points/:id/e', element: <EditPoint /> },
     ],
   },
 ])

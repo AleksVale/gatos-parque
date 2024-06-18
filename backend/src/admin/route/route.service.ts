@@ -9,15 +9,13 @@ import { IFilterGetUsers } from '../user/user.service';
 export class RouteService {
   constructor(private readonly routeRepository: RouteRepository) {}
   async create(createRouteDto: CreateRouteDto) {
+    const { points, ...entity } = createRouteDto;
     const route =
       await this.routeRepository.create<Prisma.RouteUncheckedCreateInput>(
-        createRouteDto,
+        entity,
       );
     if (route) {
-      await this.routeRepository.createRoutePoints(
-        route.id,
-        createRouteDto.points,
-      );
+      await this.routeRepository.createRoutePoints(route.id, points);
     }
   }
 
