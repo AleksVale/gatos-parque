@@ -20,6 +20,19 @@ let AutocompleteService = class AutocompleteService {
         if (!fields)
             return [];
         const response = {};
+        const prismaExtended = this.prisma.$extends({
+            name: 'name',
+            result: {
+                user: {
+                    fullName: {
+                        needs: { firstName: true, lastName: true },
+                        compute(user) {
+                            return `${user.firstName} ${user.lastName}`;
+                        },
+                    },
+                },
+            },
+        });
         const fieldsArray = fields.split(',');
         for (const field of fieldsArray) {
             switch (field) {
@@ -29,6 +42,22 @@ let AutocompleteService = class AutocompleteService {
                             id: true,
                             name: true,
                             label: true,
+                        },
+                    });
+                    break;
+                case 'users':
+                    response.users = await prismaExtended.user.findMany({
+                        select: {
+                            id: true,
+                            fullName: true,
+                        },
+                    });
+                    break;
+                case 'points':
+                    response.points = await this.prisma.point.findMany({
+                        select: {
+                            id: true,
+                            name: true,
                         },
                     });
                     break;

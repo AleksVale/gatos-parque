@@ -20,7 +20,7 @@ let AwsService = class AwsService {
         this.bucketName = this.configService.get('BUCKET');
         this.s3 = new client_s3_1.S3Client({
             region: 'auto',
-            endpoint: 'a configurar',
+            endpoint: 'https://389ede1856176ea9acde64f10c938014.r2.cloudflarestorage.com/gatosparque',
             credentials: {
                 accessKeyId: this.configService.get('ACCESS_KEY_ID'),
                 secretAccessKey: this.configService.get('SECRET_ACCESS_KEY'),
@@ -41,6 +41,9 @@ let AwsService = class AwsService {
             Key: photoKey,
         }), { expiresIn: 3600 });
         return uploadResult;
+    }
+    createCheckInPhotoKey({ extension, pointId, routeId, userId, }) {
+        return `checkin/${userId}/${routeId}/${pointId}/checkin.${extension}`;
     }
 };
 exports.AwsService = AwsService;

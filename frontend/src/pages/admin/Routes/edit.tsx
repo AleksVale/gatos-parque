@@ -52,7 +52,7 @@ export function EditRoute() {
 
   async function onSubmit(values: TCreateRouteSchema): Promise<void> {
     try {
-      const response = await RouteService.update(id, values)
+      const response = await RouteService.update(id, { ...values, points: [] })
       if (response.data.success) {
         toast.success('Gato editado com sucesso')
         navigate(ROUTES.routes)

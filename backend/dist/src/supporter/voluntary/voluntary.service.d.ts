@@ -21,7 +21,7 @@ export declare class VoluntaryService {
         reason: string;
         photoKey: string | null;
         status: import(".prisma/client").$Enums.RequestStatus;
-        addressId: string;
+        addressId: string | null;
         createdAt: Date;
         updatedAt: Date;
     }>;

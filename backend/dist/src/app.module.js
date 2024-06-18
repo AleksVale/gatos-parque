@@ -27,6 +27,9 @@ const supporter_module_1 = require("./supporter/supporter/supporter.module");
 const adoption_module_1 = require("./admin/adoption/adoption.module");
 const voluntary_module_1 = require("./admin/voluntary/voluntary.module");
 const feed_module_2 = require("./supporter/feed/feed.module");
+const points_module_1 = require("./admin/points/points.module");
+const route_module_1 = require("./admin/route/route.module");
+const route_sup_module_1 = require("./supporter/route-sup/route-sup.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -55,6 +58,9 @@ exports.AppModule = AppModule = __decorate([
             adoption_module_1.AdoptionModule,
             voluntary_module_1.VoluntaryModule,
             feed_module_2.FeedModule,
+            points_module_1.PointsModule,
+            route_module_1.RouteModule,
+            route_sup_module_1.RouteSupModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [
