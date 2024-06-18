@@ -9,6 +9,8 @@ export interface Autocomplete {
 
 interface AutocompleteResponse {
   roles?: Autocomplete[]
+  users?: Autocomplete[]
+  points?: Autocomplete[]
 }
 
 const fetchAutocomplete = async (fields: string[]) => {
