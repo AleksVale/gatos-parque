@@ -9,15 +9,22 @@ import {
 
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
+interface ICreateCheckInPhotoKey {
+  userId: string;
+  routeId: number;
+  pointId: number;
+  extension: string;
+}
+
 @Injectable()
 export class AwsService {
   constructor(private readonly configService: ConfigService<Env, true>) {}
 
-  //TODO CONFIGURAR O BUCKET E O S3 CLIENT
   bucketName: string = this.configService.get('BUCKET');
   s3 = new S3Client({
     region: 'auto',
-    endpoint: 'a configurar',
+    endpoint:
+      'https://389ede1856176ea9acde64f10c938014.r2.cloudflarestorage.com/gatosparque',
     credentials: {
       accessKeyId: this.configService.get('ACCESS_KEY_ID'),
       secretAccessKey: this.configService.get('SECRET_ACCESS_KEY'),
@@ -44,5 +51,14 @@ export class AwsService {
       { expiresIn: 3600 },
     );
     return uploadResult;
+  }
+
+  createCheckInPhotoKey({
+    extension,
+    pointId,
+    routeId,
+    userId,
+  }: ICreateCheckInPhotoKey) {
+    return `checkin/${userId}/${routeId}/${pointId}/checkin.${extension}`;
   }
 }

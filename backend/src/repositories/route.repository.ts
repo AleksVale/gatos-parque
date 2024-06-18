@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { BaseRepository } from './base.repository';
 import { Prisma, Route } from '@prisma/client';
 import { PrismaService } from 'src/public/prisma/prisma.service';
-import { IFilterGetUsers } from 'src/admin/user/user.service';
 import { createPaginator } from 'prisma-pagination';
 import { RouteResponseDto } from 'src/admin/route/dto/route-response.dto';
+import { IGetVoluntary } from 'src/supporter/voluntary/voluntary.service';
 
 @Injectable()
 export class RouteRepository extends BaseRepository<Route> {
@@ -12,13 +12,14 @@ export class RouteRepository extends BaseRepository<Route> {
     super(prismaService, 'route');
   }
 
-  async findAll(options: IFilterGetUsers) {
+  async findAll(options: IGetVoluntary) {
     const paginate = createPaginator({ perPage: options.perPage });
 
     return paginate<RouteResponseDto, Prisma.RouteFindManyArgs>(
       this.prismaService.route,
       {
-        where: {},
+        where: { userId: options.user?.id },
+        include: { RoutePoint: { include: { point: true } } },
         orderBy: { createdAt: 'asc' },
       },
       {
@@ -31,7 +32,21 @@ export class RouteRepository extends BaseRepository<Route> {
     const data = points.map((point) => ({
       routeId,
       pointId: point,
+      checkin: false,
     }));
     await this.prismaService.routePoint.createMany({ data });
+  }
+
+  async findRoutePoints(routeId: number, pointId: number) {
+    return this.prismaService.routePoint.findFirst({
+      where: { routeId, pointId },
+    });
+  }
+
+  async createCheckin(routeId: number, pointId: number) {
+    return this.prismaService.routePoint.update({
+      where: { routeId_pointId: { routeId, pointId } },
+      data: { checkin: true },
+    });
   }
 }

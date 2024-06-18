@@ -188,10 +188,12 @@ model Route {
 }
 
 model RoutePoint {
-  routeId Int
-  pointId Int
-  route   Route @relation(fields: [routeId], references: [id])
-  point   Point @relation(fields: [pointId], references: [id])
+  routeId         Int
+  pointId         Int
+  checkin         Boolean
+  checkinPhotoKey String? @map("checkin_photo_key")
+  route           Route   @relation(fields: [routeId], references: [id])
+  point           Point   @relation(fields: [pointId], references: [id])
 
   @@id([routeId, pointId])
   @@map("routes_points")
