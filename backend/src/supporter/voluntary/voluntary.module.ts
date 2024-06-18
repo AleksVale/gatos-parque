@@ -7,4 +7,4 @@ import { VoluntaryRepository } from 'src/repositories/voluntary.repository';
   controllers: [VoluntaryController],
   providers: [VoluntaryService, VoluntaryRepository],
 })
-export class VoluntaryModule {}
+export class VoluntarySupModule {}

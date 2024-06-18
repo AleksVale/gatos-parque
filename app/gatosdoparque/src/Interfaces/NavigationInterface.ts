@@ -5,6 +5,8 @@ export type IRootStackParamList = {
   SignUp: undefined
   HomeScreen: undefined
   Profile: undefined
+  Points: undefined
+  Camera: { pointId: number; routeId: number }
 }
 
 export interface ISignInScreen

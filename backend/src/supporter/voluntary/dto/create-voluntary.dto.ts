@@ -12,7 +12,7 @@ export const createVoluntarySchema = z.object({
   }),
   reason: z.string().min(1, { message: zodMessages.required }),
   photoKey: z.string().nullable().optional(),
-  addressId: z.string().min(1, { message: zodMessages.required }),
+  addressId: z.string().min(1, { message: zodMessages.required }).optional(),
 });
 
 export class CreateVoluntaryDto extends createZodDto(createVoluntarySchema) {}

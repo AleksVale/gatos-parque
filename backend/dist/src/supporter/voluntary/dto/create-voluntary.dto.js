@@ -14,7 +14,7 @@ exports.createVoluntarySchema = z_1.z.object({
     }),
     reason: z_1.z.string().min(1, { message: zodMessage_1.zodMessages.required }),
     photoKey: z_1.z.string().nullable().optional(),
-    addressId: z_1.z.string().min(1, { message: zodMessage_1.zodMessages.required }),
+    addressId: z_1.z.string().min(1, { message: zodMessage_1.zodMessages.required }).optional(),
 });
 class CreateVoluntaryDto extends (0, nestjs_zod_1.createZodDto)(exports.createVoluntarySchema) {
 }

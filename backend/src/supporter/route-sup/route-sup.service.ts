@@ -28,7 +28,7 @@ export class RouteSupService {
           userId: user.id,
         });
     await this.awsService.updatePhoto(file, photoKey);
-    return this.routeRepository.update({ photoKey }, { id: routeId });
+    return this.routeRepository.updatePhotoKey(photoKey, routeId, pointId);
   }
 
   async create(createCheckin: CreateCheckinDto) {

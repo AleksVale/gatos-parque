@@ -30,6 +30,7 @@ const feed_module_2 = require("./supporter/feed/feed.module");
 const points_module_1 = require("./admin/points/points.module");
 const route_module_1 = require("./admin/route/route.module");
 const route_sup_module_1 = require("./supporter/route-sup/route-sup.module");
+const voluntary_module_2 = require("./supporter/voluntary/voluntary.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -61,6 +62,7 @@ exports.AppModule = AppModule = __decorate([
             points_module_1.PointsModule,
             route_module_1.RouteModule,
             route_sup_module_1.RouteSupModule,
+            voluntary_module_2.VoluntarySupModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [

@@ -21,6 +21,7 @@ import { FeedModule as SupporterFeedModule } from './supporter/feed/feed.module'
 import { PointsModule } from './admin/points/points.module';
 import { RouteModule } from './admin/route/route.module';
 import { RouteSupModule } from './supporter/route-sup/route-sup.module';
+import { VoluntarySupModule } from './supporter/voluntary/voluntary.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { RouteSupModule } from './supporter/route-sup/route-sup.module';
     PointsModule,
     RouteModule,
     RouteSupModule,
+    VoluntarySupModule,
   ],
   controllers: [AppController],
   providers: [

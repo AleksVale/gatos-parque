@@ -13,7 +13,7 @@ declare const UpdateVoluntaryDto_base: import("nestjs-zod").ZodDto<{
     document: import("zod").ZodOptional<import("zod").ZodEffects<import("zod").ZodString, string, string>>;
     reason: import("zod").ZodOptional<import("zod").ZodString>;
     photoKey: import("zod").ZodOptional<import("zod").ZodOptional<import("zod").ZodNullable<import("zod").ZodString>>>;
-    addressId: import("zod").ZodOptional<import("zod").ZodString>;
+    addressId: import("zod").ZodOptional<import("zod").ZodOptional<import("zod").ZodString>>;
 }, "strip", import("zod").ZodTypeAny>, {
     firstName?: string | undefined;
     lastName?: string | undefined;

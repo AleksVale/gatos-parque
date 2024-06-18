@@ -8,7 +8,12 @@ export declare class RouteSupService {
     private readonly routeRepository;
     private readonly awsService;
     constructor(routeRepository: RouteRepository, awsService: AwsService);
-    createFile(file: Express.Multer.File, user: TokenPayload, routeId: number, pointId: number): Promise<any>;
+    createFile(file: Express.Multer.File, user: TokenPayload, routeId: number, pointId: number): Promise<{
+        routeId: number;
+        pointId: number;
+        checkin: boolean;
+        checkinPhotoKey: string | null;
+    }>;
     create(createCheckin: CreateCheckinDto): Promise<void>;
     findAll(options: IGetVoluntary): Promise<import("prisma-pagination").PaginatedResult<import("../../admin/route/dto/route-response.dto").RouteResponseDto>>;
 }

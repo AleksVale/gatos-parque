@@ -18,7 +18,11 @@ let VoluntaryService = class VoluntaryService {
         this.voluntaryRepository = voluntaryRepository;
     }
     async create(createVoluntaryDto) {
-        await this.voluntaryRepository.create({ ...createVoluntaryDto, status: client_1.RequestStatus.PENDING });
+        await this.voluntaryRepository.create({
+            ...createVoluntaryDto,
+            status: client_1.RequestStatus.PENDING,
+            dateOfBirth: new Date(createVoluntaryDto.dateOfBirth),
+        });
         return { success: true };
     }
     findAll(options) {

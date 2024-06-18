@@ -34,6 +34,34 @@ __decorate([
     __metadata("design:type", String)
 ], RouteResponseDto.prototype, "name", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", Boolean)
+], RouteResponseDto.prototype, "monday", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", Boolean)
+], RouteResponseDto.prototype, "tuesday", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", Boolean)
+], RouteResponseDto.prototype, "wednesday", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", Boolean)
+], RouteResponseDto.prototype, "thursday", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", Boolean)
+], RouteResponseDto.prototype, "friday", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", Boolean)
+], RouteResponseDto.prototype, "saturday", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", Boolean)
+], RouteResponseDto.prototype, "sunday", void 0);
+__decorate([
     (0, swagger_1.ApiProperty)({ type: [RoutePointResponseDto], isArray: true }),
     __metadata("design:type", Array)
 ], RouteResponseDto.prototype, "RoutePoint", void 0);

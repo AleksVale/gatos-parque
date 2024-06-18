@@ -20,4 +20,10 @@ export declare class RouteRepository extends BaseRepository<Route> {
         checkin: boolean;
         checkinPhotoKey: string | null;
     }>;
+    updatePhotoKey(photokey: string, routeId: number, pointId: number): Promise<{
+        routeId: number;
+        pointId: number;
+        checkin: boolean;
+        checkinPhotoKey: string | null;
+    }>;
 }

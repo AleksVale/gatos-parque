@@ -11,6 +11,8 @@ import { SignUp } from '../screens/SignUp'
 import { IRootStackParamList } from '../Interfaces/NavigationInterface'
 import { Profile } from '../screens/Profile'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import { Points } from '../screens/Points'
+import { CameraComponent } from '../screens/Camera'
 
 const Stack = createNativeStackNavigator<IRootStackParamList>()
 
@@ -38,6 +40,19 @@ const AuthRoutes: React.FC = () => (
   </AuthStack.Navigator>
 )
 
+const RouteStack = createNativeStackNavigator<IRootStackParamList>()
+
+const RouteRoutes: React.FC = () => (
+  <RouteStack.Navigator
+    screenOptions={{
+      headerShown: false,
+    }}
+  >
+    <RouteStack.Screen name="Points" component={Points} />
+    <RouteStack.Screen name="Camera" component={CameraComponent} />
+  </RouteStack.Navigator>
+)
+
 const Tab = createBottomTabNavigator()
 
 const Navigation: React.FC = (): JSX.Element => {
@@ -58,6 +73,8 @@ const Navigation: React.FC = (): JSX.Element => {
                 iconName = focused ? 'person' : 'person-outline'
               } else if (route.name === 'Gatos') {
                 iconName = focused ? 'paw' : 'paw-outline'
+              } else if (route.name === 'Pontos') {
+                iconName = focused ? 'locate' : 'locate-outline'
               }
 
               return (
@@ -75,6 +92,7 @@ const Navigation: React.FC = (): JSX.Element => {
         >
           <Tab.Screen name="Home" component={HomeStack} />
           <Tab.Screen name="Gatos" component={Cat} />
+          <Tab.Screen name="Pontos" component={RouteRoutes} />
           <Tab.Screen name="Perfil" component={Profile} />
         </Tab.Navigator>
       ) : (

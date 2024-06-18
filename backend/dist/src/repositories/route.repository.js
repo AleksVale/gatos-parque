@@ -48,6 +48,12 @@ let RouteRepository = class RouteRepository extends base_repository_1.BaseReposi
             data: { checkin: true },
         });
     }
+    async updatePhotoKey(photokey, routeId, pointId) {
+        return this.prismaService.routePoint.update({
+            where: { routeId_pointId: { routeId, pointId } },
+            data: { checkinPhotoKey: photokey },
+        });
+    }
 };
 exports.RouteRepository = RouteRepository;
 exports.RouteRepository = RouteRepository = __decorate([

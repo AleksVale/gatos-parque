@@ -5,5 +5,12 @@ export declare class RoutePointResponseDto {
 }
 export declare class RouteResponseDto {
     name: string;
+    monday: boolean;
+    tuesday: boolean;
+    wednesday: boolean;
+    thursday: boolean;
+    friday: boolean;
+    saturday: boolean;
+    sunday: boolean;
     RoutePoint: RoutePointResponseDto[];
 }

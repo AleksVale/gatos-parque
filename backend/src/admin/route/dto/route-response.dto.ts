@@ -14,6 +14,26 @@ export class RoutePointResponseDto {
 export class RouteResponseDto {
   @ApiProperty()
   name: string;
+  @ApiProperty()
+  monday: boolean;
+
+  @ApiProperty()
+  tuesday: boolean;
+
+  @ApiProperty()
+  wednesday: boolean;
+
+  @ApiProperty()
+  thursday: boolean;
+
+  @ApiProperty()
+  friday: boolean;
+
+  @ApiProperty()
+  saturday: boolean;
+
+  @ApiProperty()
+  sunday: boolean;
 
   @ApiProperty({ type: [RoutePointResponseDto], isArray: true })
   RoutePoint: RoutePointResponseDto[];

@@ -21,12 +21,18 @@ import { CreateRoute } from './pages/admin/Routes/new'
 import { EditPoint } from './pages/admin/Point/edit'
 import { CreatePoint } from './pages/admin/Point/new'
 import { ListPoint } from './pages/admin/Point'
+import { RequestVoluntary } from './pages/RequestVoluntary'
+import ThankYouPage from './pages/Obrigado'
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <DefaultLayout />,
-    children: [{ path: '/login', element: <SignIn /> }],
+    children: [
+      { path: '/', element: <RequestVoluntary /> },
+      { path: '/obrigado', element: <ThankYouPage /> },
+      { path: '/login', element: <SignIn /> },
+    ],
   },
   {
     path: '/admin',

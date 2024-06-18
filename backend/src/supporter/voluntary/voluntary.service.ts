@@ -17,7 +17,11 @@ export class VoluntaryService {
     createVoluntaryDto: CreateVoluntaryDto,
   ): Promise<SuccessResponseDTO> {
     await this.voluntaryRepository.create<Prisma.VoluntaryRequestUncheckedCreateInput>(
-      { ...createVoluntaryDto, status: RequestStatus.PENDING },
+      {
+        ...createVoluntaryDto,
+        status: RequestStatus.PENDING,
+        dateOfBirth: new Date(createVoluntaryDto.dateOfBirth),
+      },
     );
     return { success: true };
   }
