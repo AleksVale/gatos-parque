@@ -45,7 +45,6 @@ export function useColumsVoluntary() {
   }, [fetchVoluntarys])
 
   async function handleAcceptVoluntary(id: string) {
-    console.log(id)
     const response = await VoluntaryService.update(id.toString(), {
       status: RequestStatus.APPROVED,
     })
@@ -111,8 +110,6 @@ export function useColumsVoluntary() {
       id: 'actions',
       cell: ({ row }) => {
         const voluntary = row.original
-        console.log(voluntary)
-
         return (
           <Dialog>
             <DialogTrigger asChild>

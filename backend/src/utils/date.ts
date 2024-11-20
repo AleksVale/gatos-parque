@@ -1,8 +1,8 @@
 import * as dayjs from 'dayjs';
-import 'dayjs/locale/pt-br';
-import utc from 'dayjs/plugin/utc';
+import * as ptbr from 'dayjs/locale/pt-br';
+import * as utc from 'dayjs/plugin/utc';
 
-dayjs.locale('pt-br');
+dayjs.locale(ptbr);
 dayjs.extend(utc);
 
 export default class DateUtils {

@@ -51,7 +51,6 @@ export function EditUser() {
 
   async function onSubmit(values: TCreateUserSchema): Promise<void> {
     try {
-      console.log(values)
       const response = await UserService.update(values, id)
       if (response.data.success) {
         toast.success('Usuário editado com sucesso')

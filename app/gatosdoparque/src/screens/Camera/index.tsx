@@ -19,7 +19,6 @@ export function CameraComponent({
       if (camera.current) {
         const photo = await camera.current.takePhoto()
         const response = await RouteService.checkIn(routeId, pointId)
-        console.log(response.data)
         if (response.data.success) {
           await RouteService.checkInPhoto(routeId, pointId, photo)
           navigation.goBack()

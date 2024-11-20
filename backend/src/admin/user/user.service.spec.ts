@@ -74,9 +74,17 @@ describe('UserService', () => {
       .spyOn(userRepository, 'update')
       .mockResolvedValueOnce(validUser as any);
     expect(await service.update('123', validUser)).toEqual(validUser);
-    expect(userRepository.update).toHaveBeenCalledWith(validUser, {
-      id: '123',
-    });
+    expect(userRepository.update).toHaveBeenCalledWith(
+      {
+        ...validUser,
+        dateOfBirth: new Date(
+          new Date(validUser.dateOfBirth).getTime() + 2 * 60 * 60 * 1000,
+        ),
+      },
+      {
+        id: '123',
+      },
+    );
   });
   it('should block a user when call delete', async () => {
     jest

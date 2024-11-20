@@ -7,8 +7,6 @@ export const FeedCard: React.FC<Pick<IFeed, 'title' | 'description'>> = ({
   description,
   title,
 }) => {
-  console.log(description)
-
   return (
     <FeedView>
       <Text>{title}</Text>
