@@ -96,6 +96,22 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>\\repositories",
+      "<rootDir>\\**\\**\\**\\*.module.ts",
+      "<rootDir>\\**\\**\\**\\dto",
+      "<rootDir>\\**\\**\\**\\entities",
+      "<rootDir>\\prisma",
+      "<rootDir>\\main.ts",
+      "<rootDir>\\logger",
+      "<rootDir>\\env.ts",
+      "<rootDir>\\app.service.ts",
+      "<rootDir>\\app.controller.ts",
+      "<rootDir>\\app.module.ts",
+      "<rootDir>\\supporter",
+      "<rootDir>\\public"
+    ],
     "testEnvironment": "node",
     "moduleNameMapper": {
       "^src/(.*)$": "<rootDir>/$1"

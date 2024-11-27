@@ -29,7 +29,7 @@ export class PointsService {
   }
 
   async findOne(id: number) {
-    const point = this.pointRepository.find<
+    const point = await this.pointRepository.find<
       Prisma.PointWhereUniqueInput,
       never
     >({
